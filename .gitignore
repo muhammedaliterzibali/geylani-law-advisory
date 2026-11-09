@@ -1,0 +1,56 @@
+# ── Gizli bilgiler: ASLA yüklenmez ─────────────────────────────
+# Ortam değişkenleri ve API anahtarları
+.env
+.env.*
+!.env.example
+*.env
+.envrc
+.secrets
+secrets/
+*.secret
+*.secrets.json
+credentials.json
+service-account*.json
+*-credentials.json
+client_secret*.json
+api_keys.*
+apikeys.*
+
+# Özel anahtarlar ve sertifikalar
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+id_rsa*
+id_ed25519*
+*.keystore
+*.jks
+
+# Bulut / dağıtım araçlarının yerel ayarları (anahtar içerebilir)
+.vercel/
+.netlify/
+.firebase/
+.aws/
+.npmrc
+.pypirc
+.netrc
+
+# ── Bağımlılıklar ve derleme çıktıları ────────────────────────
+node_modules/
+dist/
+build/
+.cache/
+*.log
+npm-debug.log*
+
+# ── İşletim sistemi / editör dosyaları ───────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.zip
