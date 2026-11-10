@@ -559,9 +559,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <input type="hidden" name="subject" value="Yeni Başvuru · Geylani Law Advisory">
         <input type="hidden" name="from_name" value="Geylani Law Advisory Web Sitesi">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="name" autocomplete="name" required placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
-        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
-        <div class="field full"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
+        <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="Ad Soyad" autocomplete="name" required maxlength="100" placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
+        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="05XX XXX XX XX veya +90 5XX…"><span class="bar"></span><span class="err" id="e-tel"></span></div>
+        <div class="field full"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
         <div class="field full"><label for="f-alan">Hukuki Alan</label>
           <select id="f-alan" name="Hukuki Alan" required>
             <option value="" selected disabled>Bir alan seçin</option>
@@ -572,7 +572,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <option>İş ve Sosyal Güvenlik Hukuku</option>
             <option>Diğer</option>
           </select><span class="bar"></span><span class="err" id="e-alan"></span></div>
-        <div class="field full"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="message" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
+        <div class="field full"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="Mesaj" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
         <p class="status" id="status" role="status"></p>
         <div class="form-foot">
           <figure class="apply-photo"><img src="img/ofis.webp" alt="Av. Abdulkadir Geylani Terzibali ofisinde" width="600" height="450" loading="lazy"><figcaption>Av. Abdulkadir Geylani Terzibali</figcaption></figure>
@@ -849,12 +849,26 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     } catch (e) { /* önizleme dışında: kayıt yok */ }
   })();
 
+  // Tek satırlık değerler: satır sonu ve kontrol karakterleri temizlenir, boşluklar sadeleşir
+  const clean = (v) => String(v || "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim();
+  // Telefon: başta isteğe bağlı "+", yalnızca rakam, boşluk, ( ) - . ; toplam 7–15 rakam (uluslararası E.164 sınırı)
+  function validPhone(v) {
+    const t = clean(v);
+    if (!/^\+?[\d\s().-]+$/.test(t)) return false;
+    const digits = t.replace(/\D/g, "");
+    return digits.length >= 7 && digits.length <= 15;
+  }
+  function validEmail(v) {
+    const t = clean(v);
+    return t.length <= 254 && /^[^\s@"<>,;:()\[\]\\]+@[^\s@"<>,;:()\[\]\\]+\.[^\s@"<>,;:()\[\]\\]{2,}$/.test(t);
+  }
+  const ALANLAR = $$("#f-alan option").map((o) => o.value).filter(Boolean);
   const rules = {
-    "f-ad": [(v) => v.trim().length >= 3, "Lütfen adınızı ve soyadınızı yazın."],
-    "f-tel": [(v) => v.replace(/\D/g, "").length >= 10, "Lütfen en az 10 haneli bir telefon numarası yazın."],
-    "f-mail": [(v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), "Lütfen geçerli bir e-posta adresi yazın (ör. ad@alan.com)."],
-    "f-alan": [(v) => !!v, "Lütfen bir hukuki alan seçin."],
-    "f-msg": [(v) => v.trim().length >= 15, "Lütfen durumunuzu en az bir-iki cümleyle özetleyin."]
+    "f-ad": [(v) => { const t = clean(v); return t.length >= 2 && t.length <= 100 && /\p{L}/u.test(t); }, "Lütfen adınızı ve soyadınızı yazın."],
+    "f-tel": [validPhone, "Lütfen geçerli bir telefon numarası yazın (ör. 0507 883 35 64 veya +90 507 883 35 64)."],
+    "f-mail": [validEmail, "Lütfen geçerli bir e-posta adresi yazın (ör. ad@alan.com)."],
+    "f-alan": [(v) => ALANLAR.includes(v), "Lütfen bir hukuki alan seçin."],
+    "f-msg": [(v) => { const t = v.trim(); return t.length >= 15 && t.length <= 3000; }, "Lütfen durumunuzu en az bir-iki cümleyle özetleyin (en fazla 3000 karakter)."]
   };
   const errId = { "f-ad": "e-ad", "f-tel": "e-tel", "f-mail": "e-mail", "f-alan": "e-alan", "f-msg": "e-msg" };
   function check(id) {
@@ -868,6 +882,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   Object.keys(rules).forEach((id) => document.getElementById(id).addEventListener("input", () => { if (document.getElementById(id).closest(".field").classList.contains("bad")) check(id); }));
 
   /* ---------- Gönderim: Web3Forms ---------- */
+  const PAGE_OPENED = Date.now();
   const WEB3FORMS_URL = "https://api.web3forms.com/submit";
   const submitLbl = $(".lbl", submit);
   const toast = $("#toast");
@@ -893,17 +908,22 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
   async function sendWeb3Forms() {
     const fd = new FormData(form);
+    const ad = clean(fd.get("Ad Soyad")).slice(0, 100);
+    const eposta = clean(fd.get("email")).slice(0, 254);
+    const alan = fd.get("Hukuki Alan");
+    // E-postada görünen alanlar ve sırası. Değerler ziyaretçinin yazdığı haliyle gelir; doğrulanmış bilgi değildir.
     const payload = {
       access_key: fd.get("access_key"),
-      subject: `Yeni Başvuru · ${fd.get("Hukuki Alan")} · ${fd.get("name").trim()}`,
-      from_name: fd.get("from_name"),
+      subject: `Yeni Başvuru · ${alan} · ${ad.slice(0, 60)}`,
+      from_name: "Geylani Law Advisory Web Sitesi",
+      replyto: eposta,                       // doğrulamadan geçmiş adres; e-postada "Yanıtla" başvurana gider
       botcheck: form.querySelector('[name="botcheck"]').checked,
-      name: fd.get("name").trim(),
-      email: fd.get("email").trim(),
-      phone: fd.get("phone").trim(),
-      "Hukuki Alan": fd.get("Hukuki Alan"),
-      message: fd.get("message").trim(),
-      "Gönderim Zamanı": new Date().toLocaleString("tr-TR", { dateStyle: "long", timeStyle: "short" })
+      "Ad Soyad": ad,
+      "Telefon": clean(fd.get("Telefon")).slice(0, 25),
+      "E-posta": eposta,
+      "Hukuki Alan": alan,
+      "Mesaj": String(fd.get("Mesaj") || "").trim().slice(0, 3000),
+      "Kaynak": "geylani-law-advisory · başvuru formu"
     };
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 20000);
@@ -916,7 +936,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       });
       let data = null;
       try { data = await res.json(); } catch (e) { /* yanıt JSON değil */ }
-      if (res.ok && data && data.success) return { ok: true };
+      if (res.ok && data && data.success === true) return { ok: true };
+      if (res.status === 429) return { ok: false, reason: "ratelimit" };
       return { ok: false, reason: "rejected", message: data && data.message };
     } catch (err) {
       return { ok: false, reason: err && err.name === "AbortError" ? "timeout" : "network" };
@@ -947,18 +968,25 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       setStatus("no", "Lütfen işaretli alanları düzeltin.");
       return;
     }
+    // Basit bot önlemi: sayfa açıldıktan 3 sn içinde gelen gönderim insan işi değildir
+    if (Date.now() - PAGE_OPENED < 3000) {
+      setStatus("no", "Lütfen birkaç saniye bekleyip tekrar deneyin.");
+      return;
+    }
     setLoading(true);
     setStatus("", "Başvurunuz gönderiliyor…");
     const result = await sendWeb3Forms();
 
+    // claude.ai önizlemesi dış sitelere bağlanamaz. Orada başvuru yalnızca önizleme kaydına yazılır
+    // ve ziyaretçiye e-posta GÖNDERİLMEDİĞİ açıkça söylenir; başarı mesajı gösterilmez.
+    let preview = false;
     if (!result.ok && result.reason === "network") {
       try {
-        const saved = await saveToPreviewStore({
-          ad: $("#f-ad").value.trim(), tel: $("#f-tel").value.trim(), eposta: $("#f-mail").value.trim(),
+        preview = await saveToPreviewStore({
+          ad: clean($("#f-ad").value), tel: clean($("#f-tel").value), eposta: clean($("#f-mail").value),
           alan: $("#f-alan").value, mesaj: $("#f-msg").value.trim(), tarih: new Date().toISOString()
         });
-        if (saved) result.ok = true;
-      } catch (err) { /* kayıt da olmadı: hata gösterilir */ }
+      } catch (err) { preview = false; }
     }
     setLoading(false);
 
@@ -967,10 +995,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       $$(".field", form).forEach((f) => f.classList.remove("bad"));
       setStatus("ok", "Başvurunuz başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.");
       notify("ok", "Başvurunuz başarıyla iletildi.", "Av. Abdulkadir Geylani Terzibali başvurunuzu inceleyip en kısa sürede size dönüş yapacak.");
+    } else if (preview) {
+      form.reset();
+      setStatus("", "Önizleme modu: başvuru e-posta ile gönderilmedi, yalnızca bu önizlemenin kayıtlarına eklendi.");
+      notify("no", "Önizleme modu", "Bu önizleme dış sunuculara bağlanamadığı için e-posta gönderilmedi. Gerçek gönderim yayındaki sitede çalışır.");
     } else {
-      const why = result.reason === "timeout"
-        ? "Sunucu zamanında yanıt vermedi."
-        : result.reason === "rejected" ? "Başvuru sunucu tarafından kabul edilmedi." : "İnternet bağlantınız kesilmiş olabilir.";
+      const why = result.reason === "timeout" ? "Sunucu zamanında yanıt vermedi."
+        : result.reason === "ratelimit" ? "Kısa sürede çok fazla deneme yapıldı; lütfen bir dakika sonra tekrar deneyin."
+        : result.reason === "rejected" ? "Başvuru sunucu tarafından kabul edilmedi."
+        : "İnternet bağlantınız kesilmiş olabilir.";
       setStatus("no", `Başvurunuz gönderilemedi. ${why} Lütfen tekrar deneyin ya da +90 507 883 35 64 numarasından bize ulaşın.`);
       notify("no", "Başvurunuz gönderilemedi.", `${why} Bilgileriniz formda duruyor; tekrar deneyebilirsiniz.`);
     }
