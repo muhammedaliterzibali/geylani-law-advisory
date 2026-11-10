@@ -246,7 +246,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .reel-row .reel:nth-child(2){transition-delay:.12s}.reel-row .reel:nth-child(3){transition-delay:.24s}
 
 /* --- 4. Başvuru --- */
-.apply{background:linear-gradient(180deg,var(--ink),var(--ink-2))}
+.apply{background:linear-gradient(180deg,var(--ink),var(--ink-2));overflow:hidden}
 .apply-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px;margin-top:48px}
 .panel{border:1px solid var(--line);background:linear-gradient(170deg,var(--ink-3),var(--ink-2));border-radius:3px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
 .form{padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:26px 22px;align-content:start}
@@ -339,7 +339,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .ib p{margin:4px 0 0;font-size:.92rem;white-space:pre-wrap;overflow-wrap:anywhere}
 
 /* footer */
-.foot{border-top:1px solid var(--line-soft);padding-block:48px 34px;background:var(--ink)}
+.foot{position:relative;isolation:isolate;overflow:hidden;border-top:1px solid var(--line-soft);padding-block:48px 34px;background:var(--ink)}
+/* Guilloche: banknot/resmî belge güvenlik çizgilerinden esinlenen ince altın dalga dokusu (tuvalde çizilir) */
+.guilloche{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
 .foot-sign{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding-block:28px 40px}
 .sig-title{margin:0;font-family:"Bodoni Moda","Playfair Display",var(--f-serif);font-weight:700;font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.01em;line-height:1.05;color:var(--fg)}
 .sig-title em{font-weight:400;font-style:italic;color:var(--gold)}
@@ -544,6 +546,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <!-- ================= 4. BAŞVURU ================= -->
 <section class="sec apply" id="basvuru">
+  <canvas class="guilloche" data-guilloche="apply" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="reveal">
       <span class="eyebrow">Başvuru</span>
@@ -636,6 +639,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </main>
 
 <footer class="foot">
+  <canvas class="guilloche" data-guilloche="foot" aria-hidden="true"></canvas>
   <div class="wrap foot-sign">
     <h2 class="sig-title">GEYLANİ LAW <em>ADVISORY</em></h2>
     <p class="sig-sub">Av. Abdulkadir Geylani Terzibali</p>
@@ -746,6 +750,54 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     size(); tick();
     let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(size, 200); });
     new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) tick(); }).observe(hero);
+  }
+
+  /* ---------- Guilloche dalga dokusu ----------
+     Paralel, birbirinin içinden geçen ince altın çizgiler; kenarlara doğru söner.
+     Sabit çizim (animasyon yok), düşük opaklık: metni ve formu yormaz. */
+  const GUILLOCHE = {
+    apply: { lines: 72, alpha: .19, rise: .55, start: -.12, spread: 1.25, a1: 58, f1: 1.35, a2: 12, f2: 4.2, fadeX: 1.0, fadeY: .7, flip: false },
+    foot:  { lines: 48, alpha: .21, rise: .38, start: .02, spread: 1.05, a1: 30, f1: 1.2, a2: 8, f2: 3.6, fadeX: .8, fadeY: 1.1, flip: true }
+  };
+  function drawGuilloche(cv) {
+    const o = GUILLOCHE[cv.dataset.guilloche];
+    const box = cv.parentElement.getBoundingClientRect();
+    const w = Math.round(box.width), h = Math.round(box.height);
+    if (!w || !h) return;
+    const d = Math.min(devicePixelRatio || 1, 2);
+    cv.width = w * d; cv.height = h * d;
+    const c = cv.getContext("2d");
+    c.setTransform(d, 0, 0, d, 0, 0);
+    c.clearRect(0, 0, w, h);
+    c.lineWidth = 1;
+    const amp = Math.min(1, h / 700);           // kısa alanlarda dalgalar küçülür
+    for (let i = 0; i < o.lines; i++) {
+      const t = i / (o.lines - 1);
+      c.strokeStyle = `rgba(214,178,104,${(o.alpha * (.45 + .55 * Math.sin(t * Math.PI))).toFixed(3)})`;
+      c.beginPath();
+      for (let x = -20; x <= w + 20; x += 4) {
+        const u = x / w, uu = o.flip ? 1 - u : u;
+        const y = h * (o.start + o.spread * t) - h * o.rise * uu * uu
+          + o.a1 * amp * Math.sin(uu * Math.PI * o.f1 + t * 5.2)
+          + o.a2 * amp * Math.sin(uu * Math.PI * o.f2 - t * 8.4);
+        x === -20 ? c.moveTo(x, y) : c.lineTo(x, y);
+      }
+      c.stroke();
+    }
+    // kenarlara doğru yumuşak sönüm
+    c.globalCompositeOperation = "destination-in";
+    const cx = o.flip ? w * .18 : w * .82;
+    const g = c.createRadialGradient(cx, h * .45, 0, cx, h * .45, Math.max(w * o.fadeX, h * o.fadeY));
+    g.addColorStop(0, "rgba(0,0,0,1)"); g.addColorStop(.55, "rgba(0,0,0,.85)"); g.addColorStop(1, "rgba(0,0,0,0)");
+    c.fillStyle = g; c.fillRect(0, 0, w, h);
+    c.globalCompositeOperation = "source-over";
+  }
+  const gCanvases = $$("canvas.guilloche");
+  gCanvases.forEach(drawGuilloche);
+  if ("ResizeObserver" in window) {
+    let gt;
+    const ro = new ResizeObserver(() => { clearTimeout(gt); gt = setTimeout(() => gCanvases.forEach(drawGuilloche), 120); });
+    gCanvases.forEach((cv) => ro.observe(cv.parentElement));
   }
 
   /* ---------- Nav ---------- */
