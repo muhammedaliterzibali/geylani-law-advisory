@@ -273,6 +273,33 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .status{grid-column:1/-1;margin:0;font-size:.92rem;min-height:1.5em}
 .status.ok{color:var(--ok)}.status.no{color:var(--danger)}
 .btn[disabled]{opacity:.6;pointer-events:none}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+/* Gönder butonu: yükleniyor */
+#submit .spin{display:none;width:15px;height:15px;border-radius:50%;border:2px solid rgba(20,16,10,.25);border-top-color:#14100a;animation:spin .8s linear infinite}
+#submit.loading{opacity:1;pointer-events:none;cursor:progress}
+#submit.loading .spin{display:inline-block}
+#submit.loading .arr{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.status.ok::before,.status.no::before{display:inline-block;margin-right:8px;font-weight:600}
+.status.ok::before{content:"✓"}
+.status.no::before{content:"!"}
+.status.ok{color:var(--ok)}
+/* Bildirim */
+.toast{position:fixed;z-index:80;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);width:min(460px,calc(100vw - 32px));
+  display:grid;grid-template-columns:40px minmax(0,1fr) 28px;gap:14px;align-items:start;padding:18px 18px 18px 20px;border-radius:4px;
+  background:linear-gradient(170deg,var(--ink-3),var(--ink-2));border:1px solid var(--line);box-shadow:0 30px 70px -20px rgba(0,0,0,.95),0 0 0 1px rgba(197,160,89,.08);
+  opacity:0;transition:opacity .45s var(--ease),transform .55s var(--ease-out)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast-ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;font-weight:700;border:1px solid var(--line)}
+.toast.ok .toast-ico{color:#14100a;background:var(--grad-gold);border-color:transparent}
+.toast.ok .toast-ico::before{content:"✓"}
+.toast.no .toast-ico{color:var(--danger);border-color:rgba(224,154,135,.5)}
+.toast.no .toast-ico::before{content:"!"}
+.toast-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.toast-body b{font-family:var(--f-serif);font-weight:500;font-size:1.25rem;line-height:1.2;color:var(--fg)}
+.toast-body span{font-size:.9rem;color:var(--fg-dim);overflow-wrap:anywhere}
+.toast-x{background:none;border:0;color:var(--fg-mute);font-size:1.4rem;line-height:1;cursor:pointer;padding:0;width:28px;height:28px}
+.toast-x:hover{color:var(--gold-hi)}
 
 .loc{display:flex;flex-direction:column;overflow:hidden}
 .map{position:relative;aspect-ratio:16/11;max-width:100%;background:#0b0d0e;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -525,12 +552,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
 
     <div class="apply-grid">
-      <form class="form panel reveal" id="form" novalidate>
-        <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="ad" autocomplete="name" required placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
-        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" required placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
-        <div class="field full"><label for="f-mail">E-Posta</label><input id="f-mail" name="eposta" type="email" autocomplete="email" required placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
+      <form class="form panel reveal" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <!-- Web3Forms: başvurular bu anahtara tanımlı adrese (av.kadirterzibali@gmail.com) e-posta olarak gider.
+             Bu anahtar tarayıcıda görünmek üzere tasarlanmıştır; gizli değildir. -->
+        <input type="hidden" name="access_key" value="0bea8867-800b-4a8b-af8a-d3afef323608">
+        <input type="hidden" name="subject" value="Yeni Başvuru · Geylani Law Advisory">
+        <input type="hidden" name="from_name" value="Geylani Law Advisory Web Sitesi">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="name" autocomplete="name" required placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
+        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
+        <div class="field full"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
         <div class="field full"><label for="f-alan">Hukuki Alan</label>
-          <select id="f-alan" name="alan" required>
+          <select id="f-alan" name="Hukuki Alan" required>
             <option value="" selected disabled>Bir alan seçin</option>
             <option>Ceza Hukuku ve Savunma</option>
             <option>Kira ve Gayrimenkul Hukuku</option>
@@ -539,13 +572,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
             <option>İş ve Sosyal Güvenlik Hukuku</option>
             <option>Diğer</option>
           </select><span class="bar"></span><span class="err" id="e-alan"></span></div>
-        <div class="field full"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="mesaj" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
+        <div class="field full"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="message" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
         <p class="status" id="status" role="status"></p>
         <div class="form-foot">
           <figure class="apply-photo"><img src="img/ofis.webp" alt="Av. Abdulkadir Geylani Terzibali ofisinde" width="600" height="450" loading="lazy"><figcaption>Av. Abdulkadir Geylani Terzibali</figcaption></figure>
           <div class="form-foot-r">
           <small>Bilgileriniz yalnızca başvurunuzun değerlendirilmesi için kullanılır. Form, avukat-müvekkil ilişkisi kurmaz.</small>
-          <button class="btn btn-gold" type="submit" id="submit">Başvuru Yap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+          <button class="btn btn-gold" type="submit" id="submit"><span class="spin" aria-hidden="true"></span><span class="lbl">Başvuru Yap</span> <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
           </div>
         </div>
       </form>
@@ -615,6 +648,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
   </div>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden>
+  <span class="toast-ico" aria-hidden="true"></span>
+  <div class="toast-body"><b id="toastTitle"></b><span id="toastText"></span></div>
+  <button class="toast-x" type="button" id="toastClose" aria-label="Bildirimi kapat">×</button>
+</div>
 
 <script>
 (() => {
@@ -828,35 +867,119 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   Object.keys(rules).forEach((id) => document.getElementById(id).addEventListener("blur", () => { if (document.getElementById(id).value) check(id); }));
   Object.keys(rules).forEach((id) => document.getElementById(id).addEventListener("input", () => { if (document.getElementById(id).closest(".field").classList.contains("bad")) check(id); }));
 
+  /* ---------- Gönderim: Web3Forms ---------- */
+  const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+  const submitLbl = $(".lbl", submit);
+  const toast = $("#toast");
+  let toastT;
+  function notify(kind, title, text) {
+    clearTimeout(toastT);
+    toast.className = "toast " + kind;
+    $("#toastTitle").textContent = title; $("#toastText").textContent = text;
+    toast.hidden = false; void toast.offsetWidth; toast.classList.add("show");
+    toastT = setTimeout(hideToast, kind === "ok" ? 7000 : 10000);
+  }
+  function hideToast() { toast.classList.remove("show"); setTimeout(() => { if (!toast.classList.contains("show")) toast.hidden = true; }, 500); }
+  $("#toastClose").addEventListener("click", hideToast);
+
+  function setLoading(on) {
+    submit.classList.toggle("loading", on);
+    submit.disabled = on;
+    submit.setAttribute("aria-busy", String(on));
+    submitLbl.textContent = on ? "Gönderiliyor…" : "Başvuru Yap";
+    $$("input, select, textarea", form).forEach((el) => { if (el.type !== "hidden") el.readOnly = on; });
+  }
+  function setStatus(kind, text) { status.className = "status" + (kind ? " " + kind : ""); status.textContent = text; }
+
+  async function sendWeb3Forms() {
+    const fd = new FormData(form);
+    const payload = {
+      access_key: fd.get("access_key"),
+      subject: `Yeni Başvuru · ${fd.get("Hukuki Alan")} · ${fd.get("name").trim()}`,
+      from_name: fd.get("from_name"),
+      botcheck: form.querySelector('[name="botcheck"]').checked,
+      name: fd.get("name").trim(),
+      email: fd.get("email").trim(),
+      phone: fd.get("phone").trim(),
+      "Hukuki Alan": fd.get("Hukuki Alan"),
+      message: fd.get("message").trim(),
+      "Gönderim Zamanı": new Date().toLocaleString("tr-TR", { dateStyle: "long", timeStyle: "short" })
+    };
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
+    try {
+      const res = await fetch(WEB3FORMS_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+        signal: ctrl.signal
+      });
+      let data = null;
+      try { data = await res.json(); } catch (e) { /* yanıt JSON değil */ }
+      if (res.ok && data && data.success) return { ok: true };
+      return { ok: false, reason: "rejected", message: data && data.message };
+    } catch (err) {
+      return { ok: false, reason: err && err.name === "AbortError" ? "timeout" : "network" };
+    } finally { clearTimeout(timer); }
+  }
+
+  // claude.ai önizlemesi dış sitelere bağlanamaz; orada başvuru sayfanın kendi kaydına yazılır
+  async function saveToPreviewStore(entry) {
+    await ready;
+    if (!db || !user) return false;
+    const uid = await user.id();
+    if (!uid) return false;
+    const ref = db.doc("basvurular/" + uid);
+    const snap = await ref.get();
+    const items = (snap.exists && Array.isArray(snap.data().items)) ? snap.data().items.slice(-24) : [];
+    items.push(entry);
+    await ref.set({ items, guncelleme: entry.tarih });
+    return true;
+  }
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    status.className = "status"; status.textContent = "";
+    if (submit.disabled) return;
+    setStatus("", "");
     const bad = Object.keys(rules).filter((id) => !check(id));
-    if (bad.length) { document.getElementById(bad[0]).focus(); status.classList.add("no"); status.textContent = "Lütfen işaretli alanları düzeltin."; return; }
-    submit.disabled = true; status.textContent = "Gönderiliyor…";
-    await ready;
-    const entry = {
-      ad: $("#f-ad").value.trim(), tel: $("#f-tel").value.trim(), eposta: $("#f-mail").value.trim(),
-      alan: $("#f-alan").value, mesaj: $("#f-msg").value.trim(), tarih: new Date().toISOString()
-    };
-    try {
-      if (!db || !user) throw { code: "unavailable" };
-      const uid = await user.id();
-      if (!uid) throw { code: "signed_out" };
-      const ref = db.doc("basvurular/" + uid);
-      const snap = await ref.get();
-      const items = (snap.exists && Array.isArray(snap.data().items)) ? snap.data().items.slice(-24) : [];
-      items.push(entry);
-      await ref.set({ items, guncelleme: entry.tarih });
+    if (bad.length) {
+      document.getElementById(bad[0]).focus();
+      setStatus("no", "Lütfen işaretli alanları düzeltin.");
+      return;
+    }
+    setLoading(true);
+    setStatus("", "Başvurunuz gönderiliyor…");
+    const result = await sendWeb3Forms();
+
+    if (!result.ok && result.reason === "network") {
+      try {
+        const saved = await saveToPreviewStore({
+          ad: $("#f-ad").value.trim(), tel: $("#f-tel").value.trim(), eposta: $("#f-mail").value.trim(),
+          alan: $("#f-alan").value, mesaj: $("#f-msg").value.trim(), tarih: new Date().toISOString()
+        });
+        if (saved) result.ok = true;
+      } catch (err) { /* kayıt da olmadı: hata gösterilir */ }
+    }
+    setLoading(false);
+
+    if (result.ok) {
       form.reset();
-      status.classList.add("ok"); status.textContent = "Başvurunuz alındı. En kısa sürede sizinle iletişime geçeceğiz.";
-    } catch (err) {
-      status.classList.add("no");
-      status.textContent = err && err.code === "signed_out"
-        ? "Başvuru göndermek için oturum açmış olmanız gerekiyor. Dilerseniz telefon veya e-posta ile ulaşabilirsiniz."
-        : "Başvurunuz şu an kaydedilemedi. Lütfen birazdan tekrar deneyin ya da telefon ve e-posta ile ulaşın.";
-    } finally { submit.disabled = false; }
+      $$(".field", form).forEach((f) => f.classList.remove("bad"));
+      setStatus("ok", "Başvurunuz başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.");
+      notify("ok", "Başvurunuz başarıyla iletildi.", "Av. Abdulkadir Geylani Terzibali başvurunuzu inceleyip en kısa sürede size dönüş yapacak.");
+    } else {
+      const why = result.reason === "timeout"
+        ? "Sunucu zamanında yanıt vermedi."
+        : result.reason === "rejected" ? "Başvuru sunucu tarafından kabul edilmedi." : "İnternet bağlantınız kesilmiş olabilir.";
+      setStatus("no", `Başvurunuz gönderilemedi. ${why} Lütfen tekrar deneyin ya da +90 507 883 35 64 numarasından bize ulaşın.`);
+      notify("no", "Başvurunuz gönderilemedi.", `${why} Bilgileriniz formda duruyor; tekrar deneyebilirsiniz.`);
+    }
   });
+
+  /* ---------- "Davanızı Başlatın" bağlantıları formu açar ve ilk alana odaklanır ---------- */
+  $$('a[href="#basvuru"]').forEach((a) => a.addEventListener("click", () => {
+    setTimeout(() => { try { $("#f-ad").focus({ preventScroll: true }); } catch (e) { $("#f-ad").focus(); } }, reduce ? 50 : 750);
+  }));
 
   /* ---------- Sahip için gelen kutusu ---------- */
   function openInbox() {
