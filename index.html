@@ -386,6 +386,39 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ---------- Başvuru bölümü: masaüstünde tek ekrana sığan kompakt yerleşim ---------- */
+@media (min-width:1101px){
+  .apply.sec{padding-block:86px 36px}
+  .apply > .wrap > .reveal:first-child{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:28px}
+  .apply > .wrap > .reveal:first-child .eyebrow{flex-basis:100%}
+  .apply .h2{font-size:clamp(1.9rem,2.5vw,2.35rem);margin-top:4px}
+  .apply .lead{margin-top:4px;max-width:52ch;font-size:.95rem}
+  .apply-grid{margin-top:18px;align-items:start}
+  .apply .form{padding:24px 30px;gap:14px 22px}
+  .apply .field.half{grid-column:auto}
+  .apply .field label{margin-bottom:2px}
+  .apply .field input,.apply .field select,.apply .field textarea{padding:6px 0 8px;font-size:.96rem}
+  .apply .field textarea{min-height:68px;height:clamp(68px,10vh,110px)}
+  .apply .status{min-height:0;font-size:.86rem}
+  .apply .status:empty{display:none}
+  .apply .form-foot-r{flex-direction:row;align-items:center;justify-content:space-between;gap:18px;width:100%}
+  .apply .form-foot-r small{font-size:.74rem;line-height:1.5;max-width:34ch}
+  .apply .form-foot-r .btn{flex:none;padding:13px 24px}
+  .apply .loc .map{aspect-ratio:auto;height:clamp(110px,15vh,150px)}
+  .apply .loc-body{padding:16px 22px 18px;gap:10px}
+  .apply .loc-body h3{font-size:1.3rem;margin-top:2px!important}
+  .apply .loc-body .addr{font-size:.9rem}
+  .apply .rows{gap:8px}
+  .apply .row{padding:7px 12px}
+  .apply .row small{font-size:.5rem}
+  .apply .loc-actions{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px}
+  .apply .loc-actions .btn{padding:11px 4px;font-size:.54rem;letter-spacing:.08em;white-space:nowrap}
+  .apply .hours{font-size:.76rem}
+  .apply .facecard{margin-top:28px;width:fit-content;max-width:100%;justify-self:center}
+  .apply .facecard img{width:auto;max-width:100%;max-height:calc(100vh - 250px)}
+  .apply .lanyard{height:96px}
+}
 </style>
 
 <!-- ================= NAV ================= -->
@@ -594,8 +627,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="Ad Soyad" autocomplete="name" required maxlength="100" placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
         <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
-        <div class="field full"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
-        <div class="field full"><label for="f-alan">Hukuki Alan</label>
+        <div class="field full half"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
+        <div class="field full half"><label for="f-alan">Hukuki Alan</label>
           <select id="f-alan" name="Hukuki Alan" required>
             <option value="" selected disabled>Bir alan seçin</option>
             <option>Ceza Hukuku ve Savunma</option>
