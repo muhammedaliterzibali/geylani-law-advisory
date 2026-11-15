@@ -1,6 +1,8 @@
 <meta charset="utf-8">
 <title>Terzibali Hukuk</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://maps.google.com https://www.google.com; form-action https://api.web3forms.com; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="Av. Abdulkadir Geylani Terzibali — Ceza, Gayrimenkul, Miras ve Aile, Ticaret ve Şirketler, İş ve Sosyal Güvenlik Hukuku.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,28 +92,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero{position:relative;height:100svh;min-height:600px;max-height:1000px;overflow:hidden;background:#050606;container-type:size;isolation:isolate}
 .scene{position:absolute;inset:0;overflow:hidden}
 /* kare görseli "cover" gibi yerleştiren sahne — göz koordinatları yüzde ile sabit kalır */
-.sq{position:absolute;left:50%;top:50%;width:max(100cqw,100cqh);aspect-ratio:1;max-width:none;transform:translate(-50%,-50%)}
-.sq img{width:100%;height:100%;object-fit:cover;max-width:none}
 
 /* 2: giriş koridoru */
-.s-entry{z-index:1;transition:transform 2.6s cubic-bezier(.55,.05,.35,1),opacity 1.4s var(--ease),filter 2s}
-.s-entry .sq{transform-origin:50% 60%}
-.stage-zoom .s-entry{transform:scale(2.3);opacity:0;filter:blur(3px) brightness(1.3)}
 
 /* 1: plaket — iki kanatlı kapı */
-.s-doors{z-index:2;perspective:1600px}
-.leaf{position:absolute;inset:0;transition:transform 2.2s cubic-bezier(.7,0,.25,1),opacity 1.6s .7s;will-change:transform}
-.leaf .sq{transform:translate(-50%,-50%)}
-.leaf-l{clip-path:polygon(0 0,47% 0,48.6% 14%,47.8% 30%,49.2% 46%,48.8% 62%,50.2% 78%,50.8% 100%,0 100%);transform-origin:0% 50%}
-.leaf-r{clip-path:polygon(47% 0,100% 0,100% 100%,50.8% 100%,50.2% 78%,48.8% 62%,49.2% 46%,47.8% 30%,48.6% 14%);transform-origin:100% 50%}
-.stage-open .leaf-l{transform:translateX(-62%) rotateY(28deg)}
-.stage-open .leaf-r{transform:translateX(62%) rotateY(-28deg)}
-.stage-open .leaf{opacity:0}
-.seam-glow{position:absolute;left:50%;top:0;bottom:0;width:4px;transform:translateX(-50%);z-index:3;pointer-events:none;
-  background:linear-gradient(180deg,transparent,rgba(255,236,190,.95) 20%,rgba(197,160,89,.9) 70%,transparent);
-  box-shadow:0 0 30px 8px rgba(214,170,90,.55),0 0 90px 20px rgba(214,170,90,.25);opacity:0;animation:seamPulse 1.3s .3s var(--ease) forwards}
-@keyframes seamPulse{0%{opacity:0;transform:translateX(-50%) scaleY(0)}100%{opacity:1;transform:translateX(-50%) scaleY(1)}}
-.stage-open .seam-glow{opacity:0!important;transition:opacity .6s;animation:none}
 
 /* 3: portre */
 .s-portrait{z-index:0;opacity:0;transform:scale(1.1);transition:opacity 1.6s var(--ease),transform 3.2s var(--ease-out)}
@@ -137,12 +121,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero-sub{color:var(--fg-dim);margin:18px 0 0;max-width:46ch}
 .hero-sub b{color:var(--fg);font-weight:500}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.replay{position:absolute;z-index:7;right:max(var(--gutter-r),24px);bottom:24px;display:flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;
-  font-family:var(--f-display);font-size:.58rem;letter-spacing:.3em;color:var(--fg-mute);opacity:0;transition:opacity .8s 1s,color .3s}
-.stage-text .replay{opacity:1}
-.replay:hover{color:var(--gold)}
-.replay svg{width:14px;height:14px}
-@media (max-width:760px){.replay{bottom:auto;top:calc(env(safe-area-inset-top,0px) + 84px)}.hero-cta .btn{flex:1 1 220px}}
+@media (max-width:760px){.hero-cta .btn{flex:1 1 220px}}
 
 /* ================= SECTIONS ================= */
 .sec{position:relative;padding-block:clamp(84px,11vw,150px);isolation:isolate}
@@ -432,7 +411,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   /* dokunma alanları en az 44px */
   .btn{min-height:48px;font-size:.7rem}
   .nav .btn-sm{min-height:44px;font-size:.62rem;padding-inline:14px}
-  .replay{padding:13px 10px;margin:-13px -10px}
   .map-open{min-height:44px;padding-inline:14px;font-size:.78rem}
   .copy{min-height:44px;min-width:72px;font-size:.8rem}
   .toast-x{width:44px;height:44px;margin:-8px -8px 0 0}
@@ -468,12 +446,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="scene s-portrait" id="sPortrait">
     <img class="vfallback hero-video" alt="" hidden><video class="hero-video" id="heroVideo" data-anim="img/hero-anim.webp" src="video/hero.mp4" poster="img/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-label="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk ofisinde"></video>
   </div>
-  <div class="scene s-entry" aria-hidden="true"><div class="sq"><img src="img/giris.webp" alt="" width="1600" height="1600"></div></div>
-  <div class="scene s-doors" aria-hidden="true">
-    <div class="leaf leaf-l"><div class="sq"><img src="img/plaket.webp" alt="" width="1400" height="1400"></div></div>
-    <div class="leaf leaf-r"><div class="sq"><img src="img/plaket.webp" alt="" width="1400" height="1400"></div></div>
-    <span class="seam-glow"></span>
-  </div>
   <div class="hero-shade"></div>
   <canvas id="dust" aria-hidden="true"></canvas>
 
@@ -488,8 +460,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       </div>
     </div></div>
   </div>
-  <button class="replay" id="replay" type="button" aria-label="Giriş animasyonunu tekrar oynat">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg>TEKRAR İZLE</button>
 </section>
 
 <!-- ================= 1. HUKUKİ ALANLAR ================= -->
@@ -740,24 +710,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   const hero = $(".hero");
   
 
-  /* ---------- Giriş sekansı: plaket → kapı açılır → koridor → portre ---------- */
-  let timers = [];
-  function clearT() { timers.forEach(clearTimeout); timers = []; }
-  function play() {
-    clearT();
-    hero.classList.remove("stage-open", "stage-zoom", "stage-text");
-    void hero.offsetWidth;
-    if (reduce) { hero.classList.add("stage-open", "stage-zoom", "stage-text"); return; }
-    timers.push(setTimeout(() => hero.classList.add("stage-open"), 1500));
-    timers.push(setTimeout(() => hero.classList.add("stage-zoom"), 3000));
-    timers.push(setTimeout(() => hero.classList.add("stage-text"), 4300));
-  }
-  const imgs = $$(".hero img");
-  Promise.race([
-    Promise.all(imgs.map((i) => i.complete ? 1 : new Promise((r) => { i.onload = i.onerror = r; }))),
-    new Promise((r) => setTimeout(r, 2500))
-  ]).then(play);
-  $("#replay").addEventListener("click", play);
+  /* ---------- Açılış: video ve başlık doğrudan görünür (giriş animasyonu yok) ---------- */
+  hero.classList.add("stage-zoom");
+  requestAnimationFrame(() => hero.classList.add("stage-text"));
 
   /* ---------- Videolar ----------
      Önce gerçek <video> oynatılır. Tarayıcı ya da bir eklenti (ör. otomatik oynatma engelleyici)

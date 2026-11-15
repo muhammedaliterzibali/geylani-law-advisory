@@ -10,7 +10,9 @@ Node.js kurulu olmalıdır.
 node sunucu.js
 ```
 
-Ardından tarayıcıda `http://localhost:8080` adresini açın. `sunucu.js`, videoların Safari ve iPhone dahil her tarayıcıda oynaması için parçalı (Range) istekleri destekler.
+Ardından tarayıcıda `http://localhost:8080` adresini açın. Sunucu varsayılan olarak yalnızca bu bilgisayardan erişilebilir; aynı ağdaki telefon veya tabletten test etmek için `HOST=0.0.0.0 node sunucu.js` ile başlatıp `http://<bilgisayarın-ip-adresi>:8080` adresini açın.
+
+Güvenlik: sunucu yalnızca site dosyalarını (html, görsel, video) sunar; `.git`, `.env`, README ve sunucu kodu gibi dosyalar sunulmaz, klasör dışına çıkış (`../`) engellenir. Sayfada içerik güvenlik politikası (CSP) tanımlıdır: yalnızca Google Fonts, Google Haritalar ve Web3Forms'a izin verilir. `sunucu.js`, videoların Safari ve iPhone dahil her tarayıcıda oynaması için parçalı (Range) istekleri destekler.
 
 ## Klasör yapısı
 
