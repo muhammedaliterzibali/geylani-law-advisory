@@ -1,6 +1,11 @@
+<!doctype html>
+<html lang="tr">
+<head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Terzibali Hukuk</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#08090a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2232%22 fill=%22%2308090a%22/%3E%3Ctext x=%2232%22 y=%2243%22 font-family=%22Georgia,serif%22 font-size=%2234%22 text-anchor=%22middle%22 fill=%22%23c5a059%22%3ET%3C/text%3E%3C/svg%3E">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://maps.google.com https://www.google.com; form-action https://api.web3forms.com; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="Av. Abdulkadir Geylani Terzibali — Ceza, Gayrimenkul, Miras ve Aile, Ticaret ve Şirketler, İş ve Sosyal Güvenlik Hukuku.">
@@ -220,7 +225,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* --- Tanıtım videoları (yan yana üçlü) --- */
 .reels{background:#000;padding-block:clamp(56px,8vw,110px)}
-.reel-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.6vw,22px);max-width:980px;margin:0 auto}
+.reel-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,3fr) minmax(0,5fr);gap:clamp(8px,1.6vw,22px);max-width:1180px;margin:0 auto;align-items:start}
+.reel.reel-sq{aspect-ratio:1/1}
 .reel{margin:0;position:relative;aspect-ratio:3/5;max-width:100%;border-radius:clamp(10px,1.4vw,18px);overflow:hidden;background:#111;box-shadow:0 30px 60px -30px rgba(0,0,0,.9),0 0 0 1px rgba(197,160,89,.08)}
 .reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .reel .reel-anim{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block}
@@ -422,29 +428,45 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   .area .go{width:48px;height:48px}
 }
 @media (max-width:380px){.row{gap:8px}.row .v{font-size:.82rem}.row > span{min-width:0;overflow-wrap:anywhere}.copy{min-width:60px;padding-inline:6px}}
+
+/* ---------- Dil değiştirici (TR | EN) ---------- */
+.lang{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(8,9,10,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.lang-b{position:relative;border:0;background:none;cursor:pointer;color:var(--fg-dim);font-family:var(--f-display);font-size:.66rem;letter-spacing:.18em;padding:7px 11px 7px 13px;border-radius:999px;transition:color .3s,background .4s var(--ease)}
+.lang-b:hover{color:var(--gold-hi)}
+.lang-b[aria-pressed="true"]{color:#14100a;background:var(--grad-gold);background-size:200% 100%;box-shadow:0 4px 14px -6px rgba(197,160,89,.7)}
+.lang-sep{width:1px;height:12px;background:var(--line)}
+.lang-b[aria-pressed="true"] + .lang-sep,.lang-sep:has(+ .lang-b[aria-pressed="true"]){opacity:0}
+.nav-links{gap:clamp(14px,2vw,28px)}
+@media (max-width:1023px){.lang-b{min-height:40px;min-width:44px;padding:0 10px;font-size:.68rem;letter-spacing:.14em}}
+@media (max-width:480px){.nav .wrap{gap:10px}.nav-links{gap:8px}.brand-t b{font-size:.92rem}}
+@media (max-width:520px){.brand-t{display:none}}
+html[lang="en"] .map::before{content:"Loading map…"}
 </style>
+</head>
+<body>
 
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Terzibali Hukuk, sayfa başı">
+    <a data-i18n-attr="aria-label:t69" class="brand" href="#top" aria-label="Terzibali Hukuk, sayfa başı">
       <span class="mono"><span class="gold-text">T</span></span>
       <span class="brand-t"><small>Terzibali Hukuk</small><b>Av. Abdulkadir Geylani Terzibali</b></span>
     </a>
-    <nav class="nav-links" aria-label="Ana menü">
-      <a class="l" href="#alanlar">Hukuki Alanlar</a>
-      <a class="l" href="#yorumlar">Yorumlar</a>
-      <a class="l" href="#sss">SSS</a>
-      <a class="btn btn-gold btn-sm" href="#basvuru">Davanızı Başlatın</a>
+    <nav data-i18n-attr="aria-label:t70" class="nav-links" aria-label="Ana menü">
+      <a data-i18n="t1" class="l" href="#alanlar">Hukuki Alanlar</a>
+      <a data-i18n="t2" class="l" href="#yorumlar">Yorumlar</a>
+      <a data-i18n="t3" class="l" href="#sss">SSS</a>
+      <div class="lang" role="group" aria-label="Dil / Language"><button type="button" class="lang-b" data-lang="tr" aria-pressed="true" lang="tr">TR</button><span class="lang-sep" aria-hidden="true"></span><button type="button" class="lang-b" data-lang="en" aria-pressed="false" lang="en">EN</button></div>
+      <a data-i18n="t4" class="btn btn-gold btn-sm" href="#basvuru">Davanızı Başlatın</a>
     </nav>
   </div>
 </header>
 
 <main>
 <!-- ================= HERO ================= -->
-<section class="hero" id="top" aria-label="Giriş">
+<section data-i18n-attr="aria-label:t71" class="hero" id="top" aria-label="Giriş">
   <div class="scene s-portrait" id="sPortrait">
-    <img class="vfallback hero-video" alt="" hidden><video class="hero-video" id="heroVideo" data-anim="img/hero-anim.webp" src="video/hero.mp4" poster="img/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-label="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk ofisinde"></video>
+    <img class="vfallback hero-video" alt="" hidden><video data-i18n-attr="aria-label:t72" class="hero-video" id="heroVideo" data-anim="img/hero-anim.webp" src="video/hero.mp4" poster="img/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-label="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk ofisinde"></video>
   </div>
   <div class="hero-shade"></div>
   <canvas id="dust" aria-hidden="true"></canvas>
@@ -452,11 +474,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="hero-copy">
     <div class="wrap"><div class="inner">
       <span class="eyebrow fx">Terzibali Hukuk</span>
-      <h1 class="fx">Hakkınız, <em class="gold-text">güçlü bir savunmayı</em> hak eder.</h1>
-      <p class="hero-sub fx"><b>Av. Abdulkadir Geylani Terzibali</b> ile ceza, gayrimenkul, miras, ticaret ve iş hukukunda; her dosyayı bizzat takip eden, gizliliğe ve titizliğe dayalı hukuki temsil.</p>
+      <h1 data-i18n="t5" class="fx">Hakkınız, <em class="gold-text">güçlü bir savunmayı</em> hak eder.</h1>
+      <p data-i18n="t6" class="hero-sub fx"><b>Av. Abdulkadir Geylani Terzibali</b> ile ceza, gayrimenkul, miras, ticaret ve iş hukukunda; her dosyayı bizzat takip eden, gizliliğe ve titizliğe dayalı hukuki temsil.</p>
       <div class="hero-cta fx">
-        <a class="btn btn-gold" href="#basvuru">Davanızı Başlatın <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-line" href="#alanlar">Hukuki Alanlar</a>
+        <a class="btn btn-gold" href="#basvuru"><span data-i18n="t67">Davanızı Başlatın</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <a data-i18n="t1" class="btn btn-line" href="#alanlar">Hukuki Alanlar</a>
       </div>
     </div></div>
   </div>
@@ -468,38 +490,38 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="wrap">
     <div class="areas-head">
       <div class="reveal">
-        <span class="eyebrow">Hukuki Alanlar</span>
-        <h2 class="h2">İhtiyaçlarınıza Özel <em>Hukuki Çözümler</em></h2>
-        <p class="lead">Her uyuşmazlık kendine özgüdür. Dosyanızı, ilgili alanın mevzuatı ve güncel Yargıtay içtihatları ışığında ele alıyoruz.</p>
+        <span data-i18n="t1" class="eyebrow">Hukuki Alanlar</span>
+        <h2 data-i18n="t7" class="h2">İhtiyaçlarınıza Özel <em>Hukuki Çözümler</em></h2>
+        <p data-i18n="t8" class="lead">Her uyuşmazlık kendine özgüdür. Dosyanızı, ilgili alanın mevzuatı ve güncel Yargıtay içtihatları ışığında ele alıyoruz.</p>
       </div>
-      <a class="btn btn-gold reveal" href="#basvuru">Davanızı Başlatın <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-gold reveal" href="#basvuru"><span data-i18n="t67">Davanızı Başlatın</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
     </div>
 
     <ol class="area-list">
       <li class="area reveal">
-        <span class="n">01</span><h3>Ceza Hukuku ve Savunma</h3>
-        <p>Ağır ceza ve asliye ceza mahkemelerinde müvekkillerin haklarını koruyan stratejik savunma çözümleri.</p>
-        <a class="go" href="#basvuru" data-area="Ceza Hukuku ve Savunma" aria-label="Ceza Hukuku ve Savunma için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <span class="n">01</span><h3 data-i18n="t9">Ceza Hukuku ve Savunma</h3>
+        <p data-i18n="t10">Ağır ceza ve asliye ceza mahkemelerinde müvekkillerin haklarını koruyan stratejik savunma çözümleri.</p>
+        <a data-i18n-attr="aria-label:t73" class="go" href="#basvuru" data-area="Ceza Hukuku ve Savunma" aria-label="Ceza Hukuku ve Savunma için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </li>
       <li class="area reveal">
-        <span class="n">02</span><h3>Kira ve Gayrimenkul Hukuku</h3>
-        <p>Tahliye davaları, kira bedeli tespitleri ve taşınmaz yönetimi.</p>
-        <a class="go" href="#basvuru" data-area="Kira ve Gayrimenkul Hukuku" aria-label="Kira ve Gayrimenkul Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <span class="n">02</span><h3 data-i18n="t11">Kira ve Gayrimenkul Hukuku</h3>
+        <p data-i18n="t12">Tahliye davaları, kira bedeli tespitleri ve taşınmaz yönetimi.</p>
+        <a data-i18n-attr="aria-label:t74" class="go" href="#basvuru" data-area="Kira ve Gayrimenkul Hukuku" aria-label="Kira ve Gayrimenkul Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </li>
       <li class="area reveal">
-        <span class="n">03</span><h3>Miras ve Aile Hukuku</h3>
-        <p>Miras taksimi, vasiyetname düzenleme ve aile hukukundan doğan ihtilaflar.</p>
-        <a class="go" href="#basvuru" data-area="Miras ve Aile Hukuku" aria-label="Miras ve Aile Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <span class="n">03</span><h3 data-i18n="t13">Miras ve Aile Hukuku</h3>
+        <p data-i18n="t14">Miras taksimi, vasiyetname düzenleme ve aile hukukundan doğan ihtilaflar.</p>
+        <a data-i18n-attr="aria-label:t75" class="go" href="#basvuru" data-area="Miras ve Aile Hukuku" aria-label="Miras ve Aile Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </li>
       <li class="area reveal">
-        <span class="n">04</span><h3>Ticaret ve Şirketler Hukuku</h3>
-        <p>Şirket kurulumları, sözleşme yönetimi ve ticari uyuşmazlıklar.</p>
-        <a class="go" href="#basvuru" data-area="Ticaret ve Şirketler Hukuku" aria-label="Ticaret ve Şirketler Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <span class="n">04</span><h3 data-i18n="t15">Ticaret ve Şirketler Hukuku</h3>
+        <p data-i18n="t16">Şirket kurulumları, sözleşme yönetimi ve ticari uyuşmazlıklar.</p>
+        <a data-i18n-attr="aria-label:t76" class="go" href="#basvuru" data-area="Ticaret ve Şirketler Hukuku" aria-label="Ticaret ve Şirketler Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </li>
       <li class="area reveal">
-        <span class="n">05</span><h3>İş ve Sosyal Güvenlik Hukuku</h3>
-        <p>İşçi-işveren ilişkileri, kıdem/ihbar tazminatı ve iş kazaları yönetimi.</p>
-        <a class="go" href="#basvuru" data-area="İş ve Sosyal Güvenlik Hukuku" aria-label="İş ve Sosyal Güvenlik Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <span class="n">05</span><h3 data-i18n="t17">İş ve Sosyal Güvenlik Hukuku</h3>
+        <p data-i18n="t18">İşçi-işveren ilişkileri, kıdem/ihbar tazminatı ve iş kazaları yönetimi.</p>
+        <a data-i18n-attr="aria-label:t77" class="go" href="#basvuru" data-area="İş ve Sosyal Güvenlik Hukuku" aria-label="İş ve Sosyal Güvenlik Hukuku için başvurun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </li>
     </ol>
   </div>
@@ -511,39 +533,39 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="wrap">
     <div class="voices-head">
       <div class="reveal">
-        <span class="eyebrow">Referanslar</span>
-        <h2 class="h2">Müvekkillerimiz <em>Neler Söylüyor?</em></h2>
-        <span class="sample-note">Örnek yorumlar: yayına almadan önce gerçek ve onaylı müvekkil görüşleriyle değiştirilecektir.</span>
+        <span data-i18n="t19" class="eyebrow">Referanslar</span>
+        <h2 data-i18n="t20" class="h2">Müvekkillerimiz <em>Neler Söylüyor?</em></h2>
+        <span data-i18n="t21" class="sample-note">Örnek yorumlar: yayına almadan önce gerçek ve onaylı müvekkil görüşleriyle değiştirilecektir.</span>
       </div>
       <div class="ctrl reveal">
-        <button type="button" id="prev" aria-label="Önceki yorum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></button>
-        <button type="button" id="next" aria-label="Sonraki yorum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+        <button data-i18n-attr="aria-label:t78" type="button" id="prev" aria-label="Önceki yorum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></button>
+        <button data-i18n-attr="aria-label:t79" type="button" id="next" aria-label="Sonraki yorum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
       </div>
     </div>
 
-    <div class="track reveal" id="track" tabindex="0" aria-label="Müvekkil yorumları">
+    <div data-i18n-attr="aria-label:t80" class="track reveal" id="track" tabindex="0" aria-label="Müvekkil yorumları">
       <article class="quote">
         <div class="mark" aria-hidden="true">“</div>
-        <blockquote>İşten çıkarıldıktan sonra kıdem ve ihbar tazminatı sürecimde her adımı önceden öğrendim. Arabuluculuk görüşmesine kadar yapılan hazırlık son derece titizdi.</blockquote>
-        <footer><span class="av">BD</span><cite><b>Burak D.</b><span>İş Hukuku</span></cite></footer>
+        <blockquote data-i18n="t22">İşten çıkarıldıktan sonra kıdem ve ihbar tazminatı sürecimde her adımı önceden öğrendim. Arabuluculuk görüşmesine kadar yapılan hazırlık son derece titizdi.</blockquote>
+        <footer><span class="av">BD</span><cite><b>Burak D.</b><span data-i18n="t23">İş Hukuku</span></cite></footer>
       </article>
       <article class="quote">
         <div class="mark" aria-hidden="true">“</div>
-        <blockquote>Şirketimizin tedarikçiyle yaşadığı alacak uyuşmazlığında sözleşmenin her maddesi ayrıntılı incelendi. Ticari davamız planlandığı gibi, düzenli ve şeffaf ilerledi.</blockquote>
-        <footer><span class="av">AY</span><cite><b>Ahmet Y.</b><span>Ticari Dava</span></cite></footer>
+        <blockquote data-i18n="t24">Şirketimizin tedarikçiyle yaşadığı alacak uyuşmazlığında sözleşmenin her maddesi ayrıntılı incelendi. Ticari davamız planlandığı gibi, düzenli ve şeffaf ilerledi.</blockquote>
+        <footer><span class="av">AY</span><cite><b>Ahmet Y.</b><span data-i18n="t25">Ticari Dava</span></cite></footer>
       </article>
       <article class="quote">
         <div class="mark" aria-hidden="true">“</div>
-        <blockquote>Kiracımızla yaşadığımız tahliye sürecinde hangi adımın neden atıldığını hep bildim. Sorularıma aynı gün içinde net yanıt aldım.</blockquote>
-        <footer><span class="av">SB</span><cite><b>Selçuk B.</b><span>Gayrimenkul</span></cite></footer>
+        <blockquote data-i18n="t26">Kiracımızla yaşadığımız tahliye sürecinde hangi adımın neden atıldığını hep bildim. Sorularıma aynı gün içinde net yanıt aldım.</blockquote>
+        <footer><span class="av">SB</span><cite><b>Selçuk B.</b><span data-i18n="t27">Gayrimenkul</span></cite></footer>
       </article>
       <article class="quote">
         <div class="mark" aria-hidden="true">“</div>
-        <blockquote>Aile içi bir miras meselesinde ne yapmam gerektiğini bilmiyordum. Seçeneklerim sabırla ve anlaşılır bir dille anlatıldı; kendimi güvende hissettim.</blockquote>
-        <footer><span class="av">MT</span><cite><b>Merve T.</b><span>Genel Danışmanlık</span></cite></footer>
+        <blockquote data-i18n="t28">Aile içi bir miras meselesinde ne yapmam gerektiğini bilmiyordum. Seçeneklerim sabırla ve anlaşılır bir dille anlatıldı; kendimi güvende hissettim.</blockquote>
+        <footer><span class="av">MT</span><cite><b>Merve T.</b><span data-i18n="t29">Genel Danışmanlık</span></cite></footer>
       </article>
     </div>
-    <div class="dots" id="dots" role="tablist" aria-label="Yorum seçimi"></div>
+    <div data-i18n-attr="aria-label:t81" class="dots" id="dots" role="tablist" aria-label="Yorum seçimi"></div>
   </div>
 </section>
 
@@ -552,51 +574,51 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="bg" aria-hidden="true"><img src="img/cam.webp" alt="" loading="lazy" width="2000" height="1116"></div>
   <div class="wrap faq-grid">
     <div class="faq-side reveal">
-      <span class="eyebrow">SSS</span>
-      <h2 class="h2">Sıkça Sorulan <em>Sorular</em></h2>
-      <p class="lead">Hukuki süreç hakkında en çok merak edilenleri yanıtladık. Sorunuz burada yoksa bize doğrudan yazabilirsiniz.</p>
+      <span data-i18n="t3" class="eyebrow">SSS</span>
+      <h2 data-i18n="t30" class="h2">Sıkça Sorulan <em>Sorular</em></h2>
+      <p data-i18n="t31" class="lead">Hukuki süreç hakkında en çok merak edilenleri yanıtladık. Sorunuz burada yoksa bize doğrudan yazabilirsiniz.</p>
       <div class="card">
-        <p>Dosyanıza özel değerlendirme için kısa bir başvuru yeterlidir.</p>
-        <a class="btn btn-line btn-sm" href="#basvuru">Başvuru Formu</a>
+        <p data-i18n="t32">Dosyanıza özel değerlendirme için kısa bir başvuru yeterlidir.</p>
+        <a data-i18n="t33" class="btn btn-line btn-sm" href="#basvuru">Başvuru Formu</a>
       </div>
     </div>
 
     <div class="acc reveal" id="acc">
       <div class="qa open">
-        <button type="button" aria-expanded="true" aria-controls="a1" id="q1">İlk danışmanlık görüşmesi ücretli mi?<span class="pm" aria-hidden="true"></span></button>
-        <div class="ans" id="a1" role="region" aria-labelledby="q1"><div><p>Hukuki danışmanlık, Türkiye Barolar Birliği Avukatlık Asgari Ücret Tarifesi kapsamında ücrete tabi bir hizmettir. İlk görüşmenin kapsamı ve ücreti, görüşme öncesinde size açıkça bildirilir; sürpriz bir maliyetle karşılaşmazsınız.</p></div></div>
+        <button data-i18n="t34" type="button" aria-expanded="true" aria-controls="a1" id="q1">İlk danışmanlık görüşmesi ücretli mi?<span class="pm" aria-hidden="true"></span></button>
+        <div class="ans" id="a1" role="region" aria-labelledby="q1"><div><p data-i18n="t35">Hukuki danışmanlık, Türkiye Barolar Birliği Avukatlık Asgari Ücret Tarifesi kapsamında ücrete tabi bir hizmettir. İlk görüşmenin kapsamı ve ücreti, görüşme öncesinde size açıkça bildirilir; sürpriz bir maliyetle karşılaşmazsınız.</p></div></div>
       </div>
       <div class="qa">
-        <button type="button" aria-expanded="false" aria-controls="a2" id="q2">Avukatlık ücretleri nasıl hesaplanır?<span class="pm" aria-hidden="true"></span></button>
-        <div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p>Ücret; dosyanın türüne, kapsamına, harcanacak emeğe ve süreye göre belirlenir ve yazılı bir avukatlık ücret sözleşmesiyle kayıt altına alınır. Kararlaştırılan ücret, yürürlükteki asgari ücret tarifesinin altında olamaz. Yargılama giderleri (harç, bilirkişi, tebligat vb.) ayrıca bildirilir.</p></div></div>
+        <button data-i18n="t36" type="button" aria-expanded="false" aria-controls="a2" id="q2">Avukatlık ücretleri nasıl hesaplanır?<span class="pm" aria-hidden="true"></span></button>
+        <div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p data-i18n="t37">Ücret; dosyanın türüne, kapsamına, harcanacak emeğe ve süreye göre belirlenir ve yazılı bir avukatlık ücret sözleşmesiyle kayıt altına alınır. Kararlaştırılan ücret, yürürlükteki asgari ücret tarifesinin altında olamaz. Yargılama giderleri (harç, bilirkişi, tebligat vb.) ayrıca bildirilir.</p></div></div>
       </div>
       <div class="qa">
-        <button type="button" aria-expanded="false" aria-controls="a3" id="q3">Paylaştığım bilgiler gizli kalacak mı?<span class="pm" aria-hidden="true"></span></button>
-        <div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p>Evet. Avukatlar, Avukatlık Kanunu gereği kendilerine tevdi edilen bilgileri gizli tutmakla yükümlüdür. Görüşmelerde ve form üzerinden paylaştığınız bilgiler yalnızca dosyanızın değerlendirilmesi amacıyla, KVKK'ya uygun şekilde işlenir.</p></div></div>
+        <button data-i18n="t38" type="button" aria-expanded="false" aria-controls="a3" id="q3">Paylaştığım bilgiler gizli kalacak mı?<span class="pm" aria-hidden="true"></span></button>
+        <div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p data-i18n="t39">Evet. Avukatlar, Avukatlık Kanunu gereği kendilerine tevdi edilen bilgileri gizli tutmakla yükümlüdür. Görüşmelerde ve form üzerinden paylaştığınız bilgiler yalnızca dosyanızın değerlendirilmesi amacıyla, KVKK'ya uygun şekilde işlenir.</p></div></div>
       </div>
       <div class="qa">
-        <button type="button" aria-expanded="false" aria-controls="a4" id="q4">Hukuki süreç ne kadar sürer?<span class="pm" aria-hidden="true"></span></button>
-        <div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p>Süre; davanın türüne, mahkemenin iş yüküne, bilirkişi incelemesi gerekip gerekmediğine ve kanun yollarına (istinaf, temyiz) başvurulup başvurulmadığına göre değişir. Arabuluculuk gibi dava şartı olan süreçler bazı dosyalarda çözümü hızlandırabilir. İlk değerlendirmede, dosyanıza özel tahmini bir zaman çizelgesi paylaşırız.</p></div></div>
+        <button data-i18n="t40" type="button" aria-expanded="false" aria-controls="a4" id="q4">Hukuki süreç ne kadar sürer?<span class="pm" aria-hidden="true"></span></button>
+        <div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p data-i18n="t41">Süre; davanın türüne, mahkemenin iş yüküne, bilirkişi incelemesi gerekip gerekmediğine ve kanun yollarına (istinaf, temyiz) başvurulup başvurulmadığına göre değişir. Arabuluculuk gibi dava şartı olan süreçler bazı dosyalarda çözümü hızlandırabilir. İlk değerlendirmede, dosyanıza özel tahmini bir zaman çizelgesi paylaşırız.</p></div></div>
       </div>
       <div class="qa">
-        <button type="button" aria-expanded="false" aria-controls="a5" id="q5">Şehir dışındaki davaları takip ediyor musunuz?<span class="pm" aria-hidden="true"></span></button>
-        <div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p>Evet. Dosyalar UYAP üzerinden Türkiye genelinde elektronik olarak takip edilebilir. Duruşmalara, dosyanın gerektirdiği şekilde yerinde katılım veya mümkün olduğunda SEGBİS ile katılım sağlanır.</p></div></div>
+        <button data-i18n="t42" type="button" aria-expanded="false" aria-controls="a5" id="q5">Şehir dışındaki davaları takip ediyor musunuz?<span class="pm" aria-hidden="true"></span></button>
+        <div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p data-i18n="t43">Evet. Dosyalar UYAP üzerinden Türkiye genelinde elektronik olarak takip edilebilir. Duruşmalara, dosyanın gerektirdiği şekilde yerinde katılım veya mümkün olduğunda SEGBİS ile katılım sağlanır.</p></div></div>
       </div>
       <div class="qa">
-        <button type="button" aria-expanded="false" aria-controls="a6" id="q6">Süreci başlatmak için ne yapmalıyım?<span class="pm" aria-hidden="true"></span></button>
-        <div class="ans" id="a6" role="region" aria-labelledby="q6"><div><p>Aşağıdaki başvuru formunu doldurmanız ya da bizi aramanız yeterlidir. Ön değerlendirmenin ardından gerekli belgeleri birlikte belirleriz. Temsil için noterden düzenlenecek bir vekaletname gerekir.</p></div></div>
+        <button data-i18n="t44" type="button" aria-expanded="false" aria-controls="a6" id="q6">Süreci başlatmak için ne yapmalıyım?<span class="pm" aria-hidden="true"></span></button>
+        <div class="ans" id="a6" role="region" aria-labelledby="q6"><div><p data-i18n="t45">Aşağıdaki başvuru formunu doldurmanız ya da bizi aramanız yeterlidir. Ön değerlendirmenin ardından gerekli belgeleri birlikte belirleriz. Temsil için noterden düzenlenecek bir vekaletname gerekir.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= TANITIM VİDEOLARI ================= -->
-<section class="reels" id="tanitim" aria-label="Terzibali Hukuk tanıtım videoları">
+<section data-i18n-attr="aria-label:t82" class="reels" id="tanitim" aria-label="Terzibali Hukuk tanıtım videoları">
   <div class="wrap">
     <div class="reel-row" id="reelRow">
-      <figure class="reel reveal"><img class="reel-anim" src="img/rozet-poster.jpg" data-anim="img/rozet-anim.webp" alt="Dönen Terzibali yaka rozeti" width="360" height="600" decoding="async"></figure>
-      <figure class="reel reveal"><img class="reel-anim" src="img/kitap-poster.jpg" data-anim="img/kitap-anim.webp" alt="Kitap sayfalarını çeviren Av. Abdulkadir Geylani Terzibali" width="360" height="600" decoding="async"></figure>
-      <figure class="reel reveal"><img class="reel-anim" src="img/plaket-poster.jpg" data-anim="img/plaket-anim.webp" alt="Dönen Terzibali Hukuk logosu" width="360" height="600" decoding="async"></figure>
+      <figure class="reel reveal"><img data-i18n-attr="alt:t83" class="reel-anim" src="img/rozet-poster.jpg" data-anim="img/rozet-anim.webp" alt="Dönen Terzibali yaka rozeti" width="360" height="600" decoding="async"></figure>
+      <figure class="reel reveal"><img data-i18n-attr="alt:t84" class="reel-anim" src="img/kitap-poster.jpg" data-anim="img/kitap-anim.webp" alt="Kitap sayfalarını çeviren Av. Abdulkadir Geylani Terzibali" width="360" height="600" decoding="async"></figure>
+      <figure class="reel reel-sq reveal"><img data-i18n-attr="alt:t85" class="reel-anim" src="img/plaket-poster.jpg" data-anim="img/plaket-anim.webp" alt="Dönen Terzibali Hukuk logosu" width="600" height="600" decoding="async"></figure>
     </div>
   </div>
 </section>
@@ -606,13 +628,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <canvas class="guilloche" data-guilloche="apply" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="reveal">
-      <span class="eyebrow">Başvuru</span>
-      <h2 class="h2">Davanıza <em>Bugün Başlayın</em></h2>
-      <p class="lead">Hukuki durumunuzu kısaca paylaşın; başvurunuzu inceleyip sizinle iletişime geçelim.</p>
+      <span data-i18n="t46" class="eyebrow">Başvuru</span>
+      <h2 data-i18n="t47" class="h2">Davanıza <em>Bugün Başlayın</em></h2>
+      <p data-i18n="t48" class="lead">Hukuki durumunuzu kısaca paylaşın; başvurunuzu inceleyip sizinle iletişime geçelim.</p>
     </div>
 
     <div class="apply-grid">
-      <figure class="facecard reveal"><span class="lanyard" aria-hidden="true"></span><img src="img/facecard.webp" alt="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk kimlik kartı" width="700" height="1166" loading="lazy"></figure>
+      <figure class="facecard reveal"><span class="lanyard" aria-hidden="true"></span><img data-i18n-attr="alt:t86" src="img/facecard.webp" alt="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk kimlik kartı" width="700" height="1166" loading="lazy"></figure>
       <form class="form panel reveal" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
         <!-- Web3Forms: başvurular bu anahtara tanımlı adrese (av.kadirterzibali@gmail.com) e-posta olarak gider.
              Bu anahtar tarayıcıda görünmek üzere tasarlanmıştır; gizli değildir. -->
@@ -620,57 +642,57 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <input type="hidden" name="subject" value="Yeni Başvuru · Terzibali Hukuk">
         <input type="hidden" name="from_name" value="Terzibali Hukuk Web Sitesi">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="Ad Soyad" autocomplete="name" required maxlength="100" placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
-        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
-        <div class="field full half"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
-        <div class="field full half"><label for="f-alan">Hukuki Alan</label>
+        <div class="field"><label data-i18n="t49" for="f-ad">Ad Soyad</label><input data-i18n-attr="placeholder:t87" id="f-ad" name="Ad Soyad" autocomplete="name" required maxlength="100" placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
+        <div class="field"><label data-i18n="t50" for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
+        <div class="field full half"><label data-i18n="t51" for="f-mail">E-Posta</label><input data-i18n-attr="placeholder:t88" id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
+        <div class="field full half"><label data-i18n="t52" for="f-alan">Hukuki Alan</label>
           <select id="f-alan" name="Hukuki Alan" required>
-            <option value="" selected disabled>Bir alan seçin</option>
-            <option>Ceza Hukuku ve Savunma</option>
-            <option>Kira ve Gayrimenkul Hukuku</option>
-            <option>Miras ve Aile Hukuku</option>
-            <option>Ticaret ve Şirketler Hukuku</option>
-            <option>İş ve Sosyal Güvenlik Hukuku</option>
-            <option>Diğer</option>
+            <option data-i18n="t54" value="" selected disabled>Bir alan seçin</option>
+            <option value="Ceza Hukuku ve Savunma" data-i18n="t9">Ceza Hukuku ve Savunma</option>
+            <option value="Kira ve Gayrimenkul Hukuku" data-i18n="t11">Kira ve Gayrimenkul Hukuku</option>
+            <option value="Miras ve Aile Hukuku" data-i18n="t13">Miras ve Aile Hukuku</option>
+            <option value="Ticaret ve Şirketler Hukuku" data-i18n="t15">Ticaret ve Şirketler Hukuku</option>
+            <option value="İş ve Sosyal Güvenlik Hukuku" data-i18n="t17">İş ve Sosyal Güvenlik Hukuku</option>
+            <option value="Diğer" data-i18n="t55">Diğer</option>
           </select><span class="bar"></span><span class="err" id="e-alan"></span></div>
-        <div class="field full"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="Mesaj" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
+        <div class="field full"><label data-i18n="t53" for="f-msg">Mesajınız</label><textarea data-i18n-attr="placeholder:t89" id="f-msg" name="Mesaj" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
         <p class="status" id="status" role="status"></p>
         <div class="form-foot">
           <div class="form-foot-r">
-          <small>Bilgileriniz yalnızca başvurunuzun değerlendirilmesi için kullanılır. Form, avukat-müvekkil ilişkisi kurmaz.</small>
-          <button class="btn btn-gold" type="submit" id="submit"><span class="spin" aria-hidden="true"></span><span class="lbl">Başvuru Yap</span> <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+          <small data-i18n="t56">Bilgileriniz yalnızca başvurunuzun değerlendirilmesi için kullanılır. Form, avukat-müvekkil ilişkisi kurmaz.</small>
+          <button class="btn btn-gold" type="submit" id="submit"><span class="spin" aria-hidden="true"></span><span data-i18n="t57" class="lbl">Başvuru Yap</span> <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
           </div>
         </div>
       </form>
 
-      <aside class="loc panel reveal" aria-label="Büro konumu">
+      <aside data-i18n-attr="aria-label:t90" class="loc panel reveal" aria-label="Büro konumu">
         <div class="map">
-          <iframe class="gmap" title="Terzibali Hukuk konumu: Bakırköy, E-5 Yan Yol, İstanbul (Google Haritalar)" src="https://maps.google.com/maps?q=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul&amp;hl=tr&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-          <a class="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul" target="_blank" rel="noopener">Google Haritalar'da aç <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+          <iframe data-i18n-attr="title:t91" class="gmap" title="Terzibali Hukuk konumu: Bakırköy, E-5 Yan Yol, İstanbul (Google Haritalar)" src="https://maps.google.com/maps?q=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul&amp;hl=tr&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a class="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul" target="_blank" rel="noopener"><span data-i18n="t68">Google Haritalar'da aç</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
         </div>
         <div class="loc-body">
           <div>
-            <span class="eyebrow">Büromuz</span>
+            <span data-i18n="t58" class="eyebrow">Büromuz</span>
             <h3 style="margin-top:10px">Terzibali Hukuk</h3>
-            <p class="addr" id="addr">Bakırköy, E-5 Yan Yol, İstanbul</p>
+            <p class="addr" id="addr" data-i18n="addr">Bakırköy, E-5 Yan Yol, İstanbul</p>
           </div>
           <div class="rows">
-            <div class="row"><span><small>Telefon</small><span class="v" id="v-tel">+90 507 883 35 64</span></span><button class="copy" type="button" data-copy="v-tel">Kopyala</button></div>
-            <div class="row"><span><small>E-Posta</small><span class="v" id="v-mail">av.kadirterzibali@gmail.com</span></span><button class="copy" type="button" data-copy="v-mail">Kopyala</button></div>
+            <div class="row"><span><small data-i18n="t50">Telefon</small><span class="v" id="v-tel">+90 507 883 35 64</span></span><button data-i18n="t59" class="copy" type="button" data-copy="v-tel">Kopyala</button></div>
+            <div class="row"><span><small data-i18n="t51">E-Posta</small><span class="v" id="v-mail">av.kadirterzibali@gmail.com</span></span><button data-i18n="t59" class="copy" type="button" data-copy="v-mail">Kopyala</button></div>
           </div>
           <div class="loc-actions">
-            <a class="btn btn-gold" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul">Yol Tarifi Al</a>
-            <a class="btn btn-line" href="tel:+905078833564">Arayın</a>
-            <a class="btn btn-line" href="mailto:av.kadirterzibali@gmail.com">E-Posta</a>
+            <a data-i18n="t60" class="btn btn-gold" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul">Yol Tarifi Al</a>
+            <a data-i18n="t61" class="btn btn-line" href="tel:+905078833564">Arayın</a>
+            <a data-i18n="t51" class="btn btn-line" href="mailto:av.kadirterzibali@gmail.com">E-Posta</a>
           </div>
-          <p class="hours">Hafta içi 09:00 – 18:00 · Randevu ile görüşme</p>
+          <p data-i18n="t62" class="hours">Hafta içi 09:00 – 18:00 · Randevu ile görüşme</p>
         </div>
       </aside>
     </div>
 
     <div class="inbox panel" id="inbox" hidden>
-      <h3>Gelen Başvurular</h3>
-      <p class="sub">Bu alanı yalnızca siz (sayfa sahibi ve editörler) görürsünüz.</p>
+      <h3 data-i18n="t63">Gelen Başvurular</h3>
+      <p data-i18n="t64" class="sub">Bu alanı yalnızca siz (sayfa sahibi ve editörler) görürsünüz.</p>
       <div class="inbox-list" id="inboxList"></div>
     </div>
   </div>
@@ -681,24 +703,24 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <canvas class="guilloche" data-guilloche="foot" aria-hidden="true"></canvas>
   <div class="wrap foot-grid">
   <div class="foot-sign">
-    <h2 class="sig-title">TERZİBALİ <em>HUKUK</em></h2>
+    <h2 data-i18n="t66" class="sig-title">TERZİBALİ <em>HUKUK</em></h2>
     <p class="sig-sub">Av. Abdulkadir Geylani Terzibali</p>
-    <blockquote class="sig-quote">“Adaletin tesisi, dürüst ve ilkeli bir savunma ile mümkündür. Müvekkillerimizin haklarını uluslararası standartlarda korumak için buradayız.”</blockquote>
+    <blockquote data-i18n="t65" class="sig-quote">“Adaletin tesisi, dürüst ve ilkeli bir savunma ile mümkündür. Müvekkillerimizin haklarını uluslararası standartlarda korumak için buradayız.”</blockquote>
     <div class="sig-links">
-      <a class="sig-ico" href="https://avukatofisleri.com/avukat/abdulkadir-geylani-terzibali-252891" target="_blank" rel="noopener" aria-label="Avukat Ofisleri profili (yeni sekmede açılır)" title="Avukat Ofisleri profili">
+      <a data-i18n-attr="title:t93;aria-label:t92" class="sig-ico" href="https://avukatofisleri.com/avukat/abdulkadir-geylani-terzibali-252891" target="_blank" rel="noopener" aria-label="Avukat Ofisleri profili (yeni sekmede açılır)" title="Avukat Ofisleri profili">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.9 5.8 3.9 9s-1.3 6.2-3.9 9c-2.6-2.8-3.9-5.8-3.9-9S9.4 5.8 12 3z"/></svg></a>
-      <a class="sig-ico" href="https://avukatbilgisi.com/istanbul-barosu-avukatlari/252891-abdulkadir-geylani-terzibali" target="_blank" rel="noopener" aria-label="İstanbul Barosu avukat bilgisi profili (yeni sekmede açılır)" title="İstanbul Barosu avukat bilgisi">
+      <a data-i18n-attr="title:t95;aria-label:t94" class="sig-ico" href="https://avukatbilgisi.com/istanbul-barosu-avukatlari/252891-abdulkadir-geylani-terzibali" target="_blank" rel="noopener" aria-label="İstanbul Barosu avukat bilgisi profili (yeni sekmede açılır)" title="İstanbul Barosu avukat bilgisi">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 13-7.5 7.5a2.12 2.12 0 0 1-3-3L11 10"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg></a>
     </div>
   </div>
-  <figure class="foot-photo"><img src="img/kapi.webp" alt="Terzibali Hukuk büro girişindeki pirinç plaket ve kapı" width="1400" height="1565" loading="lazy"></figure>
+  <figure class="foot-photo"><img data-i18n-attr="alt:t96" src="img/kapi.webp" alt="Terzibali Hukuk büro girişindeki pirinç plaket ve kapı" width="1400" height="1565" loading="lazy"></figure>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden>
   <span class="toast-ico" aria-hidden="true"></span>
   <div class="toast-body"><b id="toastTitle"></b><span id="toastText"></span></div>
-  <button class="toast-x" type="button" id="toastClose" aria-label="Bildirimi kapat">×</button>
+  <button data-i18n-attr="aria-label:t97" class="toast-x" type="button" id="toastClose" aria-label="Bildirimi kapat">×</button>
 </div>
 
 <script>
@@ -708,6 +730,37 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hero = $(".hero");
+  /* ---------- Dil (TR / EN) ----------
+     Türkçe metinler sayfanın kendisinden okunur; İngilizce karşılıklar I18N_EN içindedir.
+     JS'in ürettiği mesajlar t("türkçe metin") ile çevrilir. Tercih localStorage'da saklanır. */
+  const I18N_EN = {"t1": "Practice Areas", "t2": "Testimonials", "t3": "FAQ", "t4": "Start Your Case", "t5": "Your rights deserve <em class=\"gold-text\">a strong defence</em>.", "t6": "Legal representation in criminal, real estate, inheritance, commercial and employment law with <b>Attorney Abdulkadir Geylani Terzibali</b>: every case handled personally, built on confidentiality and diligence.", "t7": "Legal Solutions <em>Tailored to Your Needs</em>", "t8": "Every dispute is unique. We assess your case in light of the applicable legislation and current Court of Cassation case law.", "t9": "Criminal Law &amp; Defence", "t10": "Strategic defence protecting our clients’ rights before high criminal and criminal courts of first instance.", "t11": "Tenancy &amp; Real Estate Law", "t12": "Eviction cases, rent determination actions and property management.", "t13": "Inheritance &amp; Family Law", "t14": "Estate distribution, drafting of wills and disputes arising from family law.", "t15": "Commercial &amp; Corporate Law", "t16": "Company formation, contract management and commercial disputes.", "t17": "Employment &amp; Social Security Law", "t18": "Employer–employee relations, severance and notice pay, and workplace accident claims.", "t19": "References", "t20": "What Our <em>Clients Say</em>", "t21": "Sample testimonials: to be replaced with genuine, approved client feedback before going live.", "t22": "After my dismissal, I knew every step of my severance and notice pay process in advance. The preparation for mediation was extremely thorough.", "t23": "Employment Law", "t24": "In our company’s receivables dispute with a supplier, every clause of the contract was reviewed in detail. Our commercial case progressed as planned, orderly and transparently.", "t25": "Commercial Litigation", "t26": "Throughout the eviction process with our tenant, I always knew why each step was taken. My questions were answered clearly the same day.", "t27": "Real Estate", "t28": "I didn’t know what to do in a family inheritance matter. My options were explained patiently and in plain language; I felt secure.", "t29": "General Counsel", "t30": "Frequently Asked <em>Questions</em>", "t31": "We have answered the most common questions about the legal process. If yours is not here, feel free to write to us directly.", "t32": "A short application is all it takes for an assessment of your case.", "t33": "Application Form", "t34": "Is the initial consultation chargeable?", "t35": "Legal consultation is a fee-based service under the Union of Turkish Bar Associations’ Minimum Attorney Fee Tariff. The scope and fee of the initial meeting are clearly communicated beforehand, so there are no surprise costs.", "t36": "How are attorney fees calculated?", "t37": "Fees are determined by the type and scope of the case and the work and time involved, and are set out in a written fee agreement. The agreed fee cannot be below the applicable minimum fee tariff. Litigation costs (court fees, expert fees, service of process, etc.) are communicated separately.", "t38": "Will the information I share remain confidential?", "t39": "Yes. Under the Attorneys’ Act, lawyers are bound to keep information entrusted to them confidential. Information you share in meetings or through the form is processed solely to assess your case, in compliance with the Turkish Personal Data Protection Law (KVKK).", "t40": "How long does the legal process take?", "t41": "Duration depends on the type of case, the court’s workload, whether an expert examination is required and whether appeals (regional appeal, cassation) are pursued. Mandatory pre-trial steps such as mediation can speed up resolution in some cases. In the initial assessment, we share an estimated timeline specific to your case.", "t42": "Do you handle cases outside Istanbul?", "t43": "Yes. Cases can be followed electronically across Türkiye through the national judicial system (UYAP). Hearings are attended in person as the case requires, or via the court video-conference system (SEGBİS) where possible.", "t44": "How do I get started?", "t45": "Simply fill in the application form below or call us. After the preliminary assessment, we will identify the necessary documents together. Representation requires a power of attorney issued by a notary.", "t46": "Application", "t47": "Start Your Case <em>Today</em>", "t48": "Briefly describe your legal matter; we will review your application and get in touch.", "t49": "Full Name", "t50": "Phone", "t51": "Email", "t52": "Practice Area", "t53": "Your Message", "t54": "Select an area", "t55": "Other", "t56": "Your information is used solely to assess your application. Submitting this form does not create an attorney–client relationship.", "t57": "Submit Application", "t58": "Our Office", "t59": "Copy", "t60": "Get Directions", "t61": "Call Us", "t62": "Weekdays 09:00 – 18:00 · By appointment", "t63": "Incoming Applications", "t64": "Only you (the page owner and editors) can see this area.", "t65": "“Justice is achieved through an honest and principled defence. We are here to protect our clients’ rights to international standards.”", "t66": "TERZİBALİ <em>LAW</em>", "t67": "Start Your Case", "t68": "Open in Google Maps", "t69": "Terzibali Law, back to top", "t70": "Main menu", "t71": "Introduction", "t72": "Attorney Abdulkadir Geylani Terzibali at the Terzibali Law office", "t73": "Apply for Criminal Law & Defence", "t74": "Apply for Tenancy & Real Estate Law", "t75": "Apply for Inheritance & Family Law", "t76": "Apply for Commercial & Corporate Law", "t77": "Apply for Employment & Social Security Law", "t78": "Previous testimonial", "t79": "Next testimonial", "t80": "Client testimonials", "t81": "Select testimonial", "t82": "Terzibali Law introduction videos", "t83": "Rotating Terzibali lapel pin", "t84": "Attorney Abdulkadir Geylani Terzibali turning the pages of a book", "t85": "Rotating Terzibali Law logo", "t86": "Attorney Abdulkadir Geylani Terzibali, Terzibali Law ID badge", "t87": "Your full name", "t88": "name@example.com", "t89": "Briefly summarise your legal matter", "t90": "Office location", "t91": "Terzibali Law location: Bakırköy, E-5 Service Road, Istanbul (Google Maps)", "t92": "Avukat Ofisleri profile (opens in a new tab)", "t93": "Avukat Ofisleri profile", "t94": "Istanbul Bar attorney information profile (opens in a new tab)", "t95": "Istanbul Bar attorney information", "t96": "Brass plaque and door at the Terzibali Law office entrance", "t97": "Close notification", "addr": "Bakırköy, E-5 Service Road, Istanbul"};
+  const JS_EN = {"Kopyalandı": "Copied", "Kopyala": "Copy", "Seçildi": "Selected", "Lütfen adınızı ve soyadınızı yazın.": "Please enter your full name.", "Lütfen geçerli bir telefon numarası yazın (ör. 0507 883 35 64 veya +90 507 883 35 64).": "Please enter a valid phone number (e.g. +90 507 883 35 64).", "Lütfen geçerli bir e-posta adresi yazın (ör. ad@alan.com).": "Please enter a valid email address (e.g. name@domain.com).", "Lütfen bir hukuki alan seçin.": "Please select a practice area.", "Lütfen durumunuzu en az bir-iki cümleyle özetleyin (en fazla 3000 karakter).": "Please summarise your matter in at least a sentence or two (maximum 3,000 characters).", "Gönderiliyor…": "Sending…", "Başvuru Yap": "Submit Application", "Lütfen işaretli alanları düzeltin.": "Please correct the highlighted fields.", "Lütfen birkaç saniye bekleyip tekrar deneyin.": "Please wait a few seconds and try again.", "Başvurunuz gönderiliyor…": "Sending your application…", "Başvurunuz başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.": "Your application has been sent successfully. We will contact you as soon as possible.", "Başvurunuz başarıyla iletildi.": "Your application has been sent.", "Av. Abdulkadir Geylani Terzibali başvurunuzu inceleyip en kısa sürede size dönüş yapacak.": "Attorney Abdulkadir Geylani Terzibali will review your application and get back to you shortly.", "Önizleme modu: başvuru e-posta ile gönderilmedi, yalnızca bu önizlemenin kayıtlarına eklendi.": "Preview mode: the application was not emailed; it was only added to this preview's records.", "Önizleme modu": "Preview mode", "Bu önizleme dış sunuculara bağlanamadığı için e-posta gönderilmedi. Gerçek gönderim yayındaki sitede çalışır.": "This preview cannot reach external servers, so no email was sent. Real submissions work on the live site.", "Sunucu zamanında yanıt vermedi.": "The server did not respond in time.", "Kısa sürede çok fazla deneme yapıldı; lütfen bir dakika sonra tekrar deneyin.": "Too many attempts in a short time; please try again in a minute.", "Başvuru sunucu tarafından kabul edilmedi.": "The application was not accepted by the server.", "İnternet bağlantınız kesilmiş olabilir.": "Your internet connection may be down.", "Başvurunuz gönderilemedi.": "Your application could not be sent.", "Lütfen tekrar deneyin ya da +90 507 883 35 64 numarasından bize ulaşın.": "Please try again or call us on +90 507 883 35 64.", "Bilgileriniz formda duruyor; tekrar deneyebilirsiniz.": "Your details are still in the form; you can try again.", "Yorum": "Testimonial"};
+  let LANG = "tr";
+  const t = (s) => (LANG === "en" && JS_EN[s]) || s;
+  const I18N_TR = {};
+  $$("[data-i18n]").forEach((el) => { I18N_TR[el.dataset.i18n] = el.innerHTML; });
+  $$("[data-i18n-attr]").forEach((el) => el.dataset.i18nAttr.split(";").filter(Boolean).forEach((pair) => {
+    const [attr, key] = pair.split(":"); I18N_TR[key] = el.getAttribute(attr);
+  }));
+  const PAGE_TITLE = { tr: document.title, en: "Terzibali Law · Attorney Abdulkadir Geylani Terzibali" };
+  function setLang(lang, save) {
+    LANG = lang === "en" ? "en" : "tr";
+    const dict = LANG === "en" ? I18N_EN : I18N_TR;
+    document.documentElement.lang = LANG;
+    document.title = PAGE_TITLE[LANG];
+    $$("[data-i18n]").forEach((el) => { const v = dict[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+    $$("[data-i18n-attr]").forEach((el) => el.dataset.i18nAttr.split(";").filter(Boolean).forEach((pair) => {
+      const [attr, key] = pair.split(":"); const v = dict[key]; if (v != null) el.setAttribute(attr, v);
+    }));
+    $$(".lang-b").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+    // açık hata mesajlarını ve dinamik etiketleri yeni dile çevir
+    $$(".field.bad input, .field.bad select, .field.bad textarea").forEach((el) => { if (typeof check === "function") check(el.id); });
+    $$("#dots button").forEach((b) => b.setAttribute("aria-label", `${t("Yorum")} ${b.dataset.n}`));
+    const lbl = document.querySelector("#submit .lbl"); if (lbl && !document.querySelector("#submit.loading")) lbl.textContent = t("Başvuru Yap");
+    if (save) { try { localStorage.setItem("lang", LANG); } catch (e) {} }
+  }
+  $$(".lang-b").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang, true)));
+
   
 
   /* ---------- Açılış: video ve başlık doğrudan görünür (giriş animasyonu yok) ---------- */
@@ -905,7 +958,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   /* ---------- Yorum slider ---------- */
   const track = $("#track"), cards = $$(".quote", track), dots = $("#dots");
   cards.forEach((c, i) => {
-    const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-label", `Yorum ${i + 1}`);
+    const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-label", `${t("Yorum")} ${i + 1}`); b.dataset.n = i + 1;
     b.addEventListener("click", () => go(i)); dots.append(b);
   });
   const dotEls = $$("button", dots);
@@ -949,8 +1002,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   /* ---------- Kopyala ---------- */
   $$(".copy").forEach((b) => b.addEventListener("click", () => {
     const el = document.getElementById(b.dataset.copy), txt = el.textContent.trim();
-    const done = () => { b.textContent = "Kopyalandı"; setTimeout(() => (b.textContent = "Kopyala"), 1600); };
-    const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Seçildi"; setTimeout(() => (b.textContent = "Kopyala"), 1600); };
+    const done = () => { b.textContent = t("Kopyalandı"); setTimeout(() => (b.textContent = t("Kopyala")), 1600); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = t("Seçildi"); setTimeout(() => (b.textContent = t("Kopyala")), 1600); };
     try { navigator.clipboard.writeText(txt).then(done, sel); } catch (e) { sel(); }
   }));
 
@@ -993,7 +1046,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   function check(id) {
     const el = document.getElementById(id), [fn, msg] = rules[id], ok = fn(el.value);
     el.closest(".field").classList.toggle("bad", !ok);
-    document.getElementById(errId[id]).textContent = ok ? "" : msg;
+    document.getElementById(errId[id]).textContent = ok ? "" : t(msg);
     el.setAttribute("aria-invalid", String(!ok));
     return ok;
   }
@@ -1020,10 +1073,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     submit.classList.toggle("loading", on);
     submit.disabled = on;
     submit.setAttribute("aria-busy", String(on));
-    submitLbl.textContent = on ? "Gönderiliyor…" : "Başvuru Yap";
+    submitLbl.textContent = on ? t("Gönderiliyor…") : t("Başvuru Yap");
     $$("input, select, textarea", form).forEach((el) => { if (el.type !== "hidden") el.readOnly = on; });
   }
   function setStatus(kind, text) { status.className = "status" + (kind ? " " + kind : ""); status.textContent = text; }
+  const T = (s) => t(s);
 
   async function sendWeb3Forms() {
     const fd = new FormData(form);
@@ -1084,16 +1138,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     const bad = Object.keys(rules).filter((id) => !check(id));
     if (bad.length) {
       document.getElementById(bad[0]).focus();
-      setStatus("no", "Lütfen işaretli alanları düzeltin.");
+      setStatus("no", T("Lütfen işaretli alanları düzeltin."));
       return;
     }
     // Basit bot önlemi: sayfa açıldıktan 3 sn içinde gelen gönderim insan işi değildir
     if (Date.now() - PAGE_OPENED < 3000) {
-      setStatus("no", "Lütfen birkaç saniye bekleyip tekrar deneyin.");
+      setStatus("no", T("Lütfen birkaç saniye bekleyip tekrar deneyin."));
       return;
     }
     setLoading(true);
-    setStatus("", "Başvurunuz gönderiliyor…");
+    setStatus("", T("Başvurunuz gönderiliyor…"));
     const result = await sendWeb3Forms();
 
     // claude.ai önizlemesi dış sitelere bağlanamaz. Orada başvuru yalnızca önizleme kaydına yazılır
@@ -1112,19 +1166,19 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     if (result.ok) {
       form.reset();
       $$(".field", form).forEach((f) => f.classList.remove("bad"));
-      setStatus("ok", "Başvurunuz başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.");
-      notify("ok", "Başvurunuz başarıyla iletildi.", "Av. Abdulkadir Geylani Terzibali başvurunuzu inceleyip en kısa sürede size dönüş yapacak.");
+      setStatus("ok", T("Başvurunuz başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz."));
+      notify("ok", T("Başvurunuz başarıyla iletildi."), T("Av. Abdulkadir Geylani Terzibali başvurunuzu inceleyip en kısa sürede size dönüş yapacak."));
     } else if (preview) {
       form.reset();
-      setStatus("", "Önizleme modu: başvuru e-posta ile gönderilmedi, yalnızca bu önizlemenin kayıtlarına eklendi.");
-      notify("no", "Önizleme modu", "Bu önizleme dış sunuculara bağlanamadığı için e-posta gönderilmedi. Gerçek gönderim yayındaki sitede çalışır.");
+      setStatus("", T("Önizleme modu: başvuru e-posta ile gönderilmedi, yalnızca bu önizlemenin kayıtlarına eklendi."));
+      notify("no", T("Önizleme modu"), T("Bu önizleme dış sunuculara bağlanamadığı için e-posta gönderilmedi. Gerçek gönderim yayındaki sitede çalışır."));
     } else {
-      const why = result.reason === "timeout" ? "Sunucu zamanında yanıt vermedi."
+      const why = T(result.reason === "timeout" ? "Sunucu zamanında yanıt vermedi."
         : result.reason === "ratelimit" ? "Kısa sürede çok fazla deneme yapıldı; lütfen bir dakika sonra tekrar deneyin."
         : result.reason === "rejected" ? "Başvuru sunucu tarafından kabul edilmedi."
-        : "İnternet bağlantınız kesilmiş olabilir.";
-      setStatus("no", `Başvurunuz gönderilemedi. ${why} Lütfen tekrar deneyin ya da +90 507 883 35 64 numarasından bize ulaşın.`);
-      notify("no", "Başvurunuz gönderilemedi.", `${why} Bilgileriniz formda duruyor; tekrar deneyebilirsiniz.`);
+        : "İnternet bağlantınız kesilmiş olabilir.");
+      setStatus("no", `${T("Başvurunuz gönderilemedi.")} ${why} ${T("Lütfen tekrar deneyin ya da +90 507 883 35 64 numarasından bize ulaşın.")}`);
+      notify("no", T("Başvurunuz gönderilemedi."), `${why} ${T("Bilgileriniz formda duruyor; tekrar deneyebilirsiniz.")}`);
     }
   });
 
@@ -1160,5 +1214,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       });
     }, () => { clearTimeout(t); list.innerHTML = '<p class="sub">Başvurular okunamadı. Bu listeyi yalnızca sayfa sahibi ve editörler görebilir.</p>'; });
   }
+  try { if (localStorage.getItem("lang") === "en") setLang("en", false); } catch (e) {}
 })();
 </script>
+</body>
+</html>

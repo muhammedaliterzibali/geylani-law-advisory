@@ -43,3 +43,12 @@ API anahtarı gibi gizli değerler `.env` dosyasına yazılır. `.env` dosyası 
 1. av.kadirterzibali@gmail.com ile https://web3forms.com panelinde oturum açın ve `0bea8867-…` anahtarının bu adrese bağlı olduğunu görün. Bağlı değilse bu adresle yeni anahtar oluşturup `index.html` içindeki `access_key` değerini değiştirin.
 2. Siteyi yayınlayın (ör. GitHub → Settings → Pages → Branch: `main`, klasör: `/ (root)`).
 3. Yayındaki sitede gerçek bir deneme başvurusu gönderin; e-postanın gelen kutusuna (ve gerekirse spam klasörüne) düştüğünü kontrol edin.
+
+## Dil (TR / EN)
+
+Menüdeki "TR | EN" düğmesi sayfayı Türkçe ve İngilizce arasında değiştirir. Varsayılan dil Türkçedir; ziyaretçinin seçimi tarayıcıda (`localStorage`) hatırlanır.
+
+- Türkçe metinler doğrudan sayfadan okunur. Çevrilecek her öğede `data-i18n="tN"` (metin) ya da `data-i18n-attr="placeholder:tN"` (öznitelik) bulunur.
+- İngilizce karşılıklar `index.html` içindeki `I18N_EN` nesnesindedir; JavaScript'in ürettiği mesajların (form uyarıları, bildirimler) karşılıkları `JS_EN` nesnesindedir.
+- Yeni bir metin eklerken: öğeye yeni bir `data-i18n` anahtarı verin ve `I18N_EN` içine İngilizcesini yazın.
+- Formdaki "Hukuki Alan" seçeneklerinin gönderilen değeri her iki dilde de Türkçedir; avukata gelen e-posta her zaman Türkçe alan adını gösterir.
