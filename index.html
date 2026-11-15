@@ -355,12 +355,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .foot{position:relative;isolation:isolate;overflow:hidden;border-top:1px solid var(--line-soft);padding-block:48px 34px;background:var(--ink)}
 /* Guilloche: banknot/resmî belge güvenlik çizgilerinden esinlenen ince altın dalga dokusu (tuvalde çizilir) */
 .guilloche{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
-.foot{padding-block:clamp(64px,8vw,110px) clamp(48px,6vw,80px)!important}
-.foot-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,80px);align-items:center}
-.foot-photo{margin:0;max-width:100%;justify-self:center;width:min(100%,430px);aspect-ratio:900/1127;border:1px solid var(--line);padding:10px;background:rgba(8,9,10,.6);box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(197,160,89,.06)}
-.foot-photo img{width:100%;height:100%;object-fit:cover;display:block}
-@media (max-width:860px){.foot-grid{grid-template-columns:1fr}.foot-photo{width:min(100%,340px)}}
-.foot-sign{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding-block:20px}
+.foot{padding-block:0!important}
+/* Sol: imza ve bağlantılar (sola hizalı). Sağ: kapı fotoğrafı bölümün sağ yarısını kenardan kenara kaplar. */
+.foot-grid{position:static;display:grid;grid-template-columns:minmax(0,1fr);min-height:calc(46vw * 1.118);align-items:center}
+.foot-sign{width:min(560px,44vw);display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:16px;padding-block:clamp(64px,8vw,110px)}
+.foot-sign::before{display:none}
+.foot-photo{margin:0;position:absolute;top:0;right:0;bottom:0;width:46%;z-index:0}
+.foot-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.foot-photo::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,var(--ink) 0%,rgba(8,9,10,.35) 9%,transparent 22%)}
+@media (max-width:860px){
+  .foot-grid{min-height:0}
+  .foot-sign{width:100%;padding-block:64px 40px}
+  .foot-photo{position:relative;width:auto;margin-inline:calc(-1 * max(var(--gutter-l),4vw)) calc(-1 * max(var(--gutter-r),4vw));aspect-ratio:1400/1565;max-width:none}
+  .foot-photo::before{background:linear-gradient(180deg,var(--ink) 0%,transparent 14%)}
+}
+@media (max-width:600px){.foot-photo{margin-inline:calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r))}}
 .foot-sign{position:relative}
 .foot-sign::before{content:"";position:absolute;inset:4% 22%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,rgba(8,9,10,.62) 0%,rgba(8,9,10,.3) 50%,transparent 75%)}
 .sig-title{margin:0;font-family:"Bodoni Moda","Playfair Display",var(--f-serif);font-weight:700;font-size:clamp(2.2rem,4.8vw,3.6rem);letter-spacing:-.01em;line-height:1.05;color:var(--fg)}
@@ -654,7 +663,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 13-7.5 7.5a2.12 2.12 0 0 1-3-3L11 10"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg></a>
     </div>
   </div>
-  <figure class="foot-photo"><img src="img/kapi.webp" alt="Terzibali Hukuk büro girişindeki pirinç plaket" width="900" height="1127" loading="lazy"></figure>
+  <figure class="foot-photo"><img src="img/kapi.webp" alt="Terzibali Hukuk büro girişindeki pirinç plaket ve kapı" width="1400" height="1565" loading="lazy"></figure>
   </div>
 </footer>
 
