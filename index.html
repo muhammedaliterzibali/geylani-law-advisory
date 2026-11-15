@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>Geylani Law Advisory</title>
+<title>Terzibali Hukuk</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Av. Abdulkadir Geylani Terzibali — Ceza, Gayrimenkul, Miras ve Aile, Ticaret ve Şirketler, İş ve Sosyal Güvenlik Hukuku.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,7 +211,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* --- 3. SSS --- */
 .faq{background:var(--ink);overflow:hidden}
 .faq .bg{position:absolute;inset:0;z-index:-2;pointer-events:none}
-.faq .bg img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 45%;opacity:.85;filter:brightness(.62) contrast(1.05)}
+.faq .bg img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:35% 40%;opacity:.9;filter:brightness(.68) contrast(1.05)}
 .faq .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0%,rgba(8,9,10,0) 16%,rgba(8,9,10,0) 84%,var(--ink) 100%),linear-gradient(90deg,rgba(8,9,10,.72) 0%,rgba(8,9,10,.5) 38%,rgba(8,9,10,.12) 62%,rgba(8,9,10,.12) 100%)}
 @media (max-width:860px){.faq .bg::after{background:linear-gradient(180deg,var(--ink) 0%,rgba(8,9,10,.45) 12%,rgba(8,9,10,.45) 88%,var(--ink) 100%)}}
 .faq .acc{background:rgba(8,9,10,.66);border:1px solid var(--line-soft);padding:6px clamp(18px,2.4vw,30px)}
@@ -249,7 +249,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .apply{background:linear-gradient(180deg,var(--ink),var(--ink-2));overflow:hidden}
 .apply > .wrap > .reveal:first-child{position:relative}
 .apply > .wrap > .reveal:first-child::before{content:"";position:absolute;inset:-30px -60px -30px -60px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 30% 50%,rgba(8,9,10,.6),transparent 70%)}
-.apply-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px;margin-top:48px}
+.apply-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.1fr) minmax(0,1fr);gap:22px;margin-top:48px;align-items:start}
+.facecard{margin:0;position:sticky;top:110px;max-width:100%;border-radius:26px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 40px 80px -40px rgba(0,0,0,.95),0 0 0 1px rgba(197,160,89,.06)}
+.facecard img{width:100%;height:auto;display:block}
+@media (min-width:1101px){.apply-grid .form-foot{grid-template-columns:1fr}.apply-grid .apply-photo{max-width:220px}.apply-grid .loc-actions{grid-template-columns:1fr}.apply-grid .loc-body{padding:26px 22px}.apply-grid .row .v{font-size:.92rem}.apply-grid .row > span{overflow-wrap:normal}}
 .panel{border:1px solid var(--line);background:linear-gradient(170deg,var(--ink-3),var(--ink-2));border-radius:3px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
 .apply .panel{background:linear-gradient(170deg,rgba(21,24,26,.86),rgba(14,16,18,.9))}
 .form{padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:26px 22px;align-content:start}
@@ -325,7 +328,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .loc-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .loc-actions .btn{padding:14px 10px;letter-spacing:.14em;font-size:.62rem}
 .hours{font-size:.84rem;color:var(--fg-mute);margin:0}
-@media (max-width:960px){.apply-grid{grid-template-columns:1fr}}
+@media (max-width:1100px) and (min-width:961px){.apply-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}.facecard{grid-row:span 2}}
+@media (max-width:960px){.apply-grid{grid-template-columns:1fr}.facecard{position:static;max-width:360px;margin-inline:auto}}
 @media (max-width:560px){.form{grid-template-columns:1fr}.loc-actions{grid-template-columns:1fr}.loc-body{padding:22px 18px}.row{padding:12px}.row .v{font-size:.9rem}.row > span{overflow-wrap:normal}.copy{padding:6px 8px}}
 
 /* owner inbox */
@@ -367,9 +371,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Geylani Law Advisory, sayfa başı">
-      <span class="mono"><span class="gold-text">G</span></span>
-      <span class="brand-t"><small>Geylani Law Advisory</small><b>Av. Abdulkadir Geylani Terzibali</b></span>
+    <a class="brand" href="#top" aria-label="Terzibali Hukuk, sayfa başı">
+      <span class="mono"><span class="gold-text">T</span></span>
+      <span class="brand-t"><small>Terzibali Hukuk</small><b>Av. Abdulkadir Geylani Terzibali</b></span>
     </a>
     <nav class="nav-links" aria-label="Ana menü">
       <a class="l" href="#alanlar">Hukuki Alanlar</a>
@@ -384,7 +388,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <!-- ================= HERO ================= -->
 <section class="hero" id="top" aria-label="Giriş">
   <div class="scene s-portrait" id="sPortrait">
-    <img class="vfallback hero-video" alt="" hidden><video class="hero-video" id="heroVideo" data-anim="img/hero-anim.webp" src="video/hero.mp4" poster="img/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-label="Av. Abdulkadir Geylani Terzibali, Geylani Law Advisory ofisinde"></video>
+    <img class="vfallback hero-video" alt="" hidden><video class="hero-video" id="heroVideo" data-anim="img/hero-anim.webp" src="video/hero.mp4" poster="img/hero-poster.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-label="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk ofisinde"></video>
   </div>
   <div class="scene s-entry" aria-hidden="true"><div class="sq"><img src="img/giris.webp" alt="" width="1600" height="1600"></div></div>
   <div class="scene s-doors" aria-hidden="true">
@@ -397,7 +401,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
   <div class="hero-copy">
     <div class="wrap"><div class="inner">
-      <span class="eyebrow fx">Geylani Law Advisory</span>
+      <span class="eyebrow fx">Terzibali Hukuk</span>
       <h1 class="fx">Hakkınız, <em class="gold-text">güçlü bir savunmayı</em> hak eder.</h1>
       <p class="hero-sub fx"><b>Av. Abdulkadir Geylani Terzibali</b> ile ceza, gayrimenkul, miras, ticaret ve iş hukukunda; her dosyayı bizzat takip eden, gizliliğe ve titizliğe dayalı hukuki temsil.</p>
       <div class="hero-cta fx">
@@ -497,7 +501,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <!-- ================= 3. SSS ================= -->
 <section class="sec faq" id="sss">
-  <div class="bg" aria-hidden="true"><img src="img/oda.webp" alt="" loading="lazy" width="1178" height="768"></div>
+  <div class="bg" aria-hidden="true"><img src="img/cam.webp" alt="" loading="lazy" width="2000" height="1116"></div>
   <div class="wrap faq-grid">
     <div class="faq-side reveal">
       <span class="eyebrow">SSS</span>
@@ -539,12 +543,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </section>
 
 <!-- ================= TANITIM VİDEOLARI ================= -->
-<section class="reels" id="tanitim" aria-label="Geylani Law Advisory tanıtım videoları">
+<section class="reels" id="tanitim" aria-label="Terzibali Hukuk tanıtım videoları">
   <div class="wrap">
     <div class="reel-row" id="reelRow">
-      <figure class="reel reveal"><img class="reel-anim" src="img/rozet-poster.jpg" data-anim="img/rozet-anim.webp" alt="Dönen Geylani yaka rozeti" width="360" height="600" decoding="async"></figure>
-      <figure class="reel reveal"><img class="reel-anim" src="img/kitap-poster.jpg" data-anim="img/kitap-anim.webp" alt="Geylani Advisory, kitap sayfalarını çeviren avukat" width="360" height="600" decoding="async"></figure>
-      <figure class="reel reveal"><img class="reel-anim" src="img/plaket-poster.jpg" data-anim="img/plaket-anim.webp" alt="Altın ışıkla açılan Geylani mermer plaketi" width="360" height="600" decoding="async"></figure>
+      <figure class="reel reveal"><img class="reel-anim" src="img/rozet-poster.jpg" data-anim="img/rozet-anim.webp" alt="Dönen Terzibali yaka rozeti" width="360" height="600" decoding="async"></figure>
+      <figure class="reel reveal"><img class="reel-anim" src="img/kitap-poster.jpg" data-anim="img/kitap-anim.webp" alt="Kitap sayfalarını çeviren Av. Abdulkadir Geylani Terzibali" width="360" height="600" decoding="async"></figure>
+      <figure class="reel reveal"><img class="reel-anim" src="img/plaket-poster.jpg" data-anim="img/plaket-anim.webp" alt="Dönen Terzibali Hukuk logosu" width="360" height="600" decoding="async"></figure>
     </div>
   </div>
 </section>
@@ -560,15 +564,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
 
     <div class="apply-grid">
+      <figure class="facecard reveal"><img src="img/facecard.webp" alt="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk kimlik kartı" width="700" height="982" loading="lazy"></figure>
       <form class="form panel reveal" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
         <!-- Web3Forms: başvurular bu anahtara tanımlı adrese (av.kadirterzibali@gmail.com) e-posta olarak gider.
              Bu anahtar tarayıcıda görünmek üzere tasarlanmıştır; gizli değildir. -->
         <input type="hidden" name="access_key" value="0bea8867-800b-4a8b-af8a-d3afef323608">
-        <input type="hidden" name="subject" value="Yeni Başvuru · Geylani Law Advisory">
-        <input type="hidden" name="from_name" value="Geylani Law Advisory Web Sitesi">
+        <input type="hidden" name="subject" value="Yeni Başvuru · Terzibali Hukuk">
+        <input type="hidden" name="from_name" value="Terzibali Hukuk Web Sitesi">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field"><label for="f-ad">Ad Soyad</label><input id="f-ad" name="Ad Soyad" autocomplete="name" required maxlength="100" placeholder="Adınız ve soyadınız"><span class="bar"></span><span class="err" id="e-ad"></span></div>
-        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="05XX XXX XX XX veya +90 5XX…"><span class="bar"></span><span class="err" id="e-tel"></span></div>
+        <div class="field"><label for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="05XX XXX XX XX"><span class="bar"></span><span class="err" id="e-tel"></span></div>
         <div class="field full"><label for="f-mail">E-Posta</label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder="ornek@eposta.com"><span class="bar"></span><span class="err" id="e-mail"></span></div>
         <div class="field full"><label for="f-alan">Hukuki Alan</label>
           <select id="f-alan" name="Hukuki Alan" required>
@@ -617,7 +622,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <div class="loc-body">
           <div>
             <span class="eyebrow">Büromuz</span>
-            <h3 style="margin-top:10px">Geylani Law Advisory</h3>
+            <h3 style="margin-top:10px">Terzibali Hukuk</h3>
             <p class="addr" id="addr">Bakırköy, E-5 Yan Yol, İstanbul</p>
           </div>
           <div class="rows">
@@ -646,7 +651,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <footer class="foot">
   <canvas class="guilloche" data-guilloche="foot" aria-hidden="true"></canvas>
   <div class="wrap foot-sign">
-    <h2 class="sig-title">GEYLANİ LAW <em>ADVISORY</em></h2>
+    <h2 class="sig-title">TERZİBALİ <em>HUKUK</em></h2>
     <p class="sig-sub">Av. Abdulkadir Geylani Terzibali</p>
     <blockquote class="sig-quote">“Adaletin tesisi, dürüst ve ilkeli bir savunma ile mümkündür. Müvekkillerimizin haklarını uluslararası standartlarda korumak için buradayız.”</blockquote>
     <div class="sig-links">
@@ -766,8 +771,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     // ropes: omurga boyunca yerleşen örgü bantları (aynı eksen etrafında faz kaydırmalı çizgiler)
     apply: {
       spine: { a: .02, b: .62, c: -.42 },
-      contour: { gap: 11, A: 34, k: .0068, delta: .16, alpha: .21 },
-      ropes: { at: [-.32, -.05, .22, .49, .76], strands: 9, R: 17, k: .0145, alpha: .30 },
+      contour: { gap: 11, A: 34, k: .0068, delta: .16, alpha: .3 },
+      ropes: { at: [-.32, -.05, .22, .49, .76], strands: 9, R: 17, k: .0145, alpha: .44 },
       lw: .8
     },
     foot: {
@@ -1012,7 +1017,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     const payload = {
       access_key: fd.get("access_key"),
       subject: `Yeni Başvuru · ${alan} · ${ad.slice(0, 60)}`,
-      from_name: "Geylani Law Advisory Web Sitesi",
+      from_name: "Terzibali Hukuk Web Sitesi",
       replyto: eposta,                       // doğrulamadan geçmiş adres; e-postada "Yanıtla" başvurana gider
       botcheck: form.querySelector('[name="botcheck"]').checked,
       "Ad Soyad": ad,
@@ -1020,7 +1025,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       "E-posta": eposta,
       "Hukuki Alan": alan,
       "Mesaj": String(fd.get("Mesaj") || "").trim().slice(0, 3000),
-      "Kaynak": "geylani-law-advisory · başvuru formu"
+      "Kaynak": "Terzibali Hukuk · başvuru formu"
     };
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 20000);

@@ -1,4 +1,4 @@
-# Geylani Law Advisory
+# Terzibali Hukuk
 
 Av. Abdulkadir Geylani Terzibali için hazırlanmış tek sayfalık, animasyonlu hukuk bürosu sitesi.
 
