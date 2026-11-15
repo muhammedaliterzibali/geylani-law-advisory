@@ -246,13 +246,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .reel-row .reel:nth-child(2){transition-delay:.12s}.reel-row .reel:nth-child(3){transition-delay:.24s}
 
 /* --- 4. Başvuru --- */
+.apply > .wrap{max-width:1360px}
 .apply{background:linear-gradient(180deg,var(--ink),var(--ink-2));overflow:hidden}
+.apply .facecard{margin-top:clamp(40px,6vw,90px)}
 .apply > .wrap > .reveal:first-child{position:relative}
 .apply > .wrap > .reveal:first-child::before{content:"";position:absolute;inset:-30px -60px -30px -60px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 30% 50%,rgba(8,9,10,.6),transparent 70%)}
-.apply-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.1fr) minmax(0,1fr);gap:22px;margin-top:48px;align-items:start}
-.facecard{margin:0;position:sticky;top:110px;max-width:100%;border-radius:26px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 40px 80px -40px rgba(0,0,0,.95),0 0 0 1px rgba(197,160,89,.06)}
-.facecard img{width:100%;height:auto;display:block}
-@media (min-width:1101px){.apply-grid .form-foot{grid-template-columns:1fr}.apply-grid .apply-photo{max-width:220px}.apply-grid .loc-actions{grid-template-columns:1fr}.apply-grid .loc-body{padding:26px 22px}.apply-grid .row .v{font-size:.92rem}.apply-grid .row > span{overflow-wrap:normal}}
+.apply-grid{display:grid;grid-template-columns:minmax(0,.66fr) minmax(0,1.4fr) minmax(0,.92fr);gap:24px;margin-top:48px;align-items:start}
+.facecard{margin:0;position:relative;max-width:100%;transform-origin:50% -320px;animation:badgeSway 7s ease-in-out infinite}
+.facecard img{position:relative;width:100%;height:auto;display:block;filter:drop-shadow(0 34px 40px rgba(0,0,0,.75))}
+/* askı: kartın askısını bölümün üst kenarına kadar uzatır */
+.lanyard{position:absolute;left:38.6%;width:22%;bottom:calc(100% - 2px);height:calc(clamp(40px,6vw,90px) + 70px);pointer-events:none;-webkit-mask-image:linear-gradient(0deg,#000 55%,transparent);mask-image:linear-gradient(0deg,#000 55%,transparent);
+  background:linear-gradient(118deg,transparent 46%,rgba(170,165,210,.22) 47%,transparent 48.5%),linear-gradient(62deg,transparent 30%,rgba(170,165,210,.16) 31%,transparent 32.5%),linear-gradient(180deg,#05050c,#0b0a19);
+  background-size:100% 260px,100% 340px,100% 100%;box-shadow:inset 1px 0 0 rgba(255,255,255,.06),inset -1px 0 0 rgba(255,255,255,.06)}
+@keyframes badgeSway{0%,100%{transform:rotate(-.9deg)}50%{transform:rotate(.9deg)}}
+@media (prefers-reduced-motion:reduce){.facecard{animation:none}}
+@media (min-width:1101px){.apply-grid .form-foot{grid-template-columns:1fr}.apply-grid .loc-actions{grid-template-columns:1fr}.apply-grid .loc-body{padding:26px 22px}.apply-grid .row .v{font-size:.92rem}.apply-grid .row > span{overflow-wrap:normal}}
 .panel{border:1px solid var(--line);background:linear-gradient(170deg,var(--ink-3),var(--ink-2));border-radius:3px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
 .apply .panel{background:linear-gradient(170deg,rgba(21,24,26,.86),rgba(14,16,18,.9))}
 .form{padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:26px 22px;align-content:start}
@@ -269,12 +277,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .field :focus ~ .bar{transform:scaleX(1)}
 .field.bad input,.field.bad select,.field.bad textarea{border-bottom-color:var(--danger)}
 .field .err{font-size:.78rem;color:var(--danger);margin-top:6px;min-height:0}
-.form-foot{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:24px;align-items:center}
+.form-foot{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
 .form-foot-r{display:flex;flex-direction:column;align-items:flex-start;gap:16px;min-width:0}
-.apply-photo{margin:0;position:relative;aspect-ratio:4/3;max-width:100%;border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(0,0,0,.9)}
-.apply-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.apply-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 7px;font-family:var(--f-display);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-hi);background:linear-gradient(0deg,rgba(8,9,10,.92),transparent)}
-@media (max-width:560px){.form-foot{grid-template-columns:1fr}.apply-photo{max-width:240px}}
 .form-foot small{color:var(--fg-mute);font-size:.8rem;max-width:44ch}
 .status{grid-column:1/-1;margin:0;font-size:.92rem;min-height:1.5em}
 .status.ok{color:var(--ok)}.status.no{color:var(--danger)}
@@ -309,12 +313,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 .loc{display:flex;flex-direction:column;overflow:hidden}
 .map{position:relative;aspect-ratio:16/11;max-width:100%;background:#0b0d0e;overflow:hidden;border-bottom:1px solid var(--line)}
-.map svg{width:100%;height:100%;display:block}
-.map svg.pin{width:34px;height:44px}
-.pin{position:absolute;left:56%;top:47%;transform:translate(-50%,-100%);width:34px;height:44px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
-.pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:14px;height:14px;border-radius:50%;transform:translateX(-50%);border:1px solid var(--gold);animation:ping 2.2s ease-out infinite}
-@keyframes ping{0%{transform:translateX(-50%) scale(.6);opacity:1}100%{transform:translateX(-50%) scale(4);opacity:0}}
-.map .tag{position:absolute;left:12px;bottom:10px;font-size:.68rem;color:var(--fg-mute);letter-spacing:.06em}
+.map::before{content:"Harita yükleniyor…";position:absolute;inset:0;display:grid;place-items:center;color:var(--fg-mute);font-size:.8rem;letter-spacing:.06em}
+.gmap{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;filter:grayscale(.35) invert(.92) hue-rotate(180deg) brightness(.92) contrast(.92)}
+.map-open{position:absolute;right:10px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid var(--line);border-radius:2px;
+  background:rgba(8,9,10,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--gold-hi);font-size:.72rem;letter-spacing:.04em;transition:background .3s,color .3s}
+.map-open svg{width:13px;height:13px}
+.map-open:hover{background:var(--gold);color:#14100a}
 .loc-body{padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:20px}
 .loc-body h3{margin:0;font-family:var(--f-serif);font-weight:500;font-size:1.6rem;line-height:1.2}
 .addr{margin:0;color:var(--fg-dim)}
@@ -328,8 +332,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .loc-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .loc-actions .btn{padding:14px 10px;letter-spacing:.14em;font-size:.62rem}
 .hours{font-size:.84rem;color:var(--fg-mute);margin:0}
-@media (max-width:1100px) and (min-width:961px){.apply-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}.facecard{grid-row:span 2}}
-@media (max-width:960px){.apply-grid{grid-template-columns:1fr}.facecard{position:static;max-width:360px;margin-inline:auto}}
+@media (max-width:1100px) and (min-width:961px){.apply-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}.facecard{grid-row:span 2;align-self:start}}
+@media (max-width:960px){.apply-grid{grid-template-columns:1fr}.facecard{max-width:320px;margin-inline:auto}}
 @media (max-width:560px){.form{grid-template-columns:1fr}.loc-actions{grid-template-columns:1fr}.loc-body{padding:22px 18px}.row{padding:12px}.row .v{font-size:.9rem}.row > span{overflow-wrap:normal}.copy{padding:6px 8px}}
 
 /* owner inbox */
@@ -564,7 +568,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
 
     <div class="apply-grid">
-      <figure class="facecard reveal"><img src="img/facecard.webp" alt="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk kimlik kartı" width="700" height="982" loading="lazy"></figure>
+      <figure class="facecard reveal"><span class="lanyard" aria-hidden="true"></span><img src="img/facecard.webp" alt="Av. Abdulkadir Geylani Terzibali, Terzibali Hukuk kimlik kartı" width="700" height="1166" loading="lazy"></figure>
       <form class="form panel reveal" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
         <!-- Web3Forms: başvurular bu anahtara tanımlı adrese (av.kadirterzibali@gmail.com) e-posta olarak gider.
              Bu anahtar tarayıcıda görünmek üzere tasarlanmıştır; gizli değildir. -->
@@ -588,7 +592,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <div class="field full"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="Mesaj" required maxlength="3000" placeholder="Hukuki durumu kısaca özetleyin"></textarea><span class="bar"></span><span class="err" id="e-msg"></span></div>
         <p class="status" id="status" role="status"></p>
         <div class="form-foot">
-          <figure class="apply-photo"><img src="img/ofis.webp" alt="Av. Abdulkadir Geylani Terzibali ofisinde" width="600" height="450" loading="lazy"><figcaption>Av. Abdulkadir Geylani Terzibali</figcaption></figure>
           <div class="form-foot-r">
           <small>Bilgileriniz yalnızca başvurunuzun değerlendirilmesi için kullanılır. Form, avukat-müvekkil ilişkisi kurmaz.</small>
           <button class="btn btn-gold" type="submit" id="submit"><span class="spin" aria-hidden="true"></span><span class="lbl">Başvuru Yap</span> <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
@@ -598,26 +601,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
       <aside class="loc panel reveal" aria-label="Büro konumu">
         <div class="map">
-          <svg viewBox="0 0 400 275" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bakırköy çevresini gösteren temsilî harita">
-            <rect width="400" height="275" fill="#0c0f10"/>
-            <path d="M0 215 C70 205 120 228 190 222 S320 205 400 214 V275 H0Z" fill="#0f1b1f"/>
-            <g stroke="#1b2023" stroke-width="1">
-              <path d="M0 40H400M0 80H400M0 160H400M0 190H400M40 0V275M95 0V275M150 0V275M260 0V275M320 0V275M370 0V275" fill="none"/>
-            </g>
-            <g stroke="#262c2f" stroke-width="3" fill="none" stroke-linecap="round">
-              <path d="M0 125 C80 120 140 132 210 128 S330 116 400 120"/>
-              <path d="M200 0 C205 60 215 120 230 215"/>
-              <path d="M60 0 C70 70 80 140 110 210"/>
-            </g>
-            <path d="M0 108 C90 100 150 112 220 106 S340 95 400 100" stroke="#c5a059" stroke-opacity=".75" stroke-width="5" fill="none"/>
-            <path d="M0 116 C90 108 150 120 220 114 S340 103 400 108" stroke="#c5a059" stroke-opacity=".35" stroke-width="1.5" fill="none" stroke-dasharray="6 6"/>
-            <text x="18" y="96" fill="#c5a059" font-size="10" font-family="Manrope, sans-serif" letter-spacing="2">E-5 (D-100)</text>
-            <text x="300" y="132" fill="#8a877f" font-size="9" font-family="Manrope, sans-serif" letter-spacing="1.5">Yan Yol</text>
-            <text x="245" y="70" fill="#a8a397" font-size="12" font-family="Cormorant Garamond, Georgia, serif" font-style="italic">Bakırköy</text>
-            <text x="150" y="252" fill="#3d5359" font-size="10" font-family="Manrope, sans-serif" letter-spacing="3">MARMARA DENİZİ</text>
-          </svg>
-          <svg class="pin" viewBox="0 0 34 44" aria-hidden="true"><path d="M17 43s14-14.6 14-25.5A14 14 0 0 0 3 17.5C3 28.4 17 43 17 43z" fill="#c5a059"/><circle cx="17" cy="17" r="5.5" fill="#14100a"/></svg>
-          <span class="tag">Harita temsilîdir</span>
+          <iframe class="gmap" title="Terzibali Hukuk konumu: Bakırköy, E-5 Yan Yol, İstanbul (Google Haritalar)" src="https://maps.google.com/maps?q=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul&amp;hl=tr&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a class="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=Bak%C4%B1rk%C3%B6y%20E-5%20Yan%20Yol%2C%20%C4%B0stanbul" target="_blank" rel="noopener">Google Haritalar'da aç <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
         </div>
         <div class="loc-body">
           <div>
