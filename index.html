@@ -116,14 +116,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* 3: portre */
 .s-portrait{z-index:0;opacity:0;transform:scale(1.1);transition:opacity 1.6s var(--ease),transform 3.2s var(--ease-out)}
 .stage-zoom .s-portrait{opacity:1;transform:scale(1)}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:74% 0%}
-/* Masaüstü: videonun tamamı (orta plan) sağa yaslanır; üstte baş payı, solda yazı alanı.
-   Kenarlar maske ile zemine yumuşakça karışır. */
-@media (min-width:761px){
-  .hero-video{inset:auto 0 0 auto;width:auto;height:91%;aspect-ratio:16/9;object-position:50% 0%;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 16%),linear-gradient(0deg,#000 84%,transparent 100%);-webkit-mask-composite:source-in;
-    mask-image:linear-gradient(90deg,transparent 0%,#000 16%),linear-gradient(0deg,#000 84%,transparent 100%);mask-composite:intersect}
-}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:62% 0%}
+@media (max-width:760px){.hero-video{object-position:74% 0%}}
 .hero-shade{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity 1.6s .4s;
   background:linear-gradient(90deg,rgba(10,12,11,.85) 0%,rgba(10,12,11,.4) 50%,transparent 100%),linear-gradient(0deg,rgba(8,9,10,1) 0%,rgba(8,9,10,.35) 16%,transparent 34%)}
 .stage-zoom .hero-shade{opacity:1}
