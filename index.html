@@ -249,7 +249,19 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (prefers-reduced-motion:reduce){.facecard{animation:none}}
 @media (min-width:1101px){.apply-grid .form-foot{grid-template-columns:1fr}.apply-grid .loc-actions{grid-template-columns:1fr}.apply-grid .loc-body{padding:26px 22px}.apply-grid .row .v{font-size:.92rem}.apply-grid .row > span{overflow-wrap:normal}}
 .panel{border:1px solid var(--line);background:linear-gradient(170deg,var(--ink-3),var(--ink-2));border-radius:3px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
-.apply .panel{background:linear-gradient(170deg,rgba(21,24,26,.86),rgba(14,16,18,.9))}
+.apply .panel{background:linear-gradient(170deg,rgba(14,16,18,.66),rgba(10,12,13,.74))}
+/* Arka plan: Terzibali Hukuk tabelalı duvar. Çok hafif yumuşatma, tabela ortalı ve kesilmeden; hafif karartma */
+.apply-bg{position:absolute;inset:0;z-index:-2;pointer-events:none}
+.apply-bg img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:47% 42%;filter:blur(.4px) brightness(.9)}
+.apply-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,10,.5) 0%,rgba(8,9,10,.22) 20%,rgba(8,9,10,.22) 82%,rgba(8,9,10,.55) 100%)}
+/* Tablet ve telefonda bölüm uzun: fotoğraf tam genişlikte üstte, tabela kesilmeden; aşağı doğru koyu zemine karışır */
+@media (max-width:1100px){
+  .apply-bg{top:64px;bottom:auto;aspect-ratio:2000/1116;width:100%;max-width:100%}
+  .apply-bg img{object-fit:contain;object-position:50% 0%}
+  .apply-bg::after{background:linear-gradient(180deg,rgba(8,9,10,.35) 0%,rgba(8,9,10,.25) 55%,var(--ink) 100%)}
+  .apply.sec{padding-top:calc(64px + 100vw * .558 * .66)}
+}
+.apply .guilloche{opacity:.3}
 .form{padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:26px 22px;align-content:start}
 .field{display:flex;flex-direction:column;position:relative;min-width:0}
 .field.full{grid-column:1/-1}
@@ -625,6 +637,7 @@ html[lang="en"] .map::before{content:"Loading map…"}
 
 <!-- ================= 4. BAŞVURU ================= -->
 <section class="sec apply" id="basvuru">
+  <div class="apply-bg" aria-hidden="true"><img src="img/tabela.webp" alt="" loading="lazy" width="2000" height="1116"></div>
   <canvas class="guilloche" data-guilloche="apply" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="reveal">
