@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://terzibalihukuk.com.tr/sitemap.xml

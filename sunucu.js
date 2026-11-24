@@ -12,6 +12,7 @@ const PORT = Number(process.env.PORT) || 8080;
 const HOST = process.env.HOST || "127.0.0.1";
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8", ".xml": "application/xml; charset=utf-8",
   ".mp4": "video/mp4", ".webp": "image/webp", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml"
 };
 // Yalnızca bu uzantılar sunulur; sunucu kodu, README, .git, .env vb. asla sunulmaz.
