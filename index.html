@@ -508,6 +508,19 @@ html[lang="en"] .map::before{content:"Loading map…"}
   .about-text{padding:22px 18px}
 }
 @media (prefers-reduced-motion:reduce){.ph::after,.ph.in{animation:none}.ph.reveal{opacity:1;transform:none}}
+
+/* ---------- Hakkımda: kaydırırken kolaj her zaman tam görünür ---------- */
+/* overflow:hidden yapışkan konumlandırmayı bozar; clip aynı kırpmayı sticky'yi bozmadan yapar */
+.about.areas{overflow:clip}
+@media (min-width:961px){
+  .about-grid{align-items:start}
+  /* kolaj ekran yüksekliğine sığacak boyutta ve metin kaydırılırken menünün altında sabit kalır */
+  .about .collage{position:sticky;top:calc(66px + 2.5vh);width:min(100%,calc((100vh - 66px - 6vh) / 1.32));justify-self:center}
+}
+@media (max-width:960px){
+  .about .collage{width:min(100%,calc((100svh - 90px) / 1.32))}
+  .about-grid{gap:48px}
+}
 </style>
 </head>
 <body>
