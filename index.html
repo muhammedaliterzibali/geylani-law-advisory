@@ -521,6 +521,21 @@ html[lang="en"] .map::before{content:"Loading map…"}
   .about .collage{width:min(100%,calc((100svh - 90px) / 1.32))}
   .about-grid{gap:48px}
 }
+
+/* ---------- Hakkımda (masaüstü): sağ sütun tek bakışta tamamen görünsün ---------- */
+/* metin sütunu genişler; yazı, boşluk ve başlık ekran yüksekliğine göre ölçeklenir. Kırpma yok: içerik doğal yükseklikte akar */
+@media (min-width:961px){
+  .about.sec{padding-block:clamp(56px,7vh,96px)}
+  .about-grid{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(32px,3.5vw,64px)}
+  .about .about-text{padding:clamp(18px,2.6vh,32px) clamp(22px,2.4vw,36px);height:auto;max-height:none;overflow:visible}
+  .about .about-text .eyebrow{font-size:.62rem}
+  .about .about-text .h2{font-size:clamp(1.7rem,4.2vh,2.6rem);margin:6px 0 clamp(10px,1.6vh,18px)}
+  .about .facts{margin-bottom:clamp(10px,1.8vh,20px)}
+  .about .facts li{padding-block:clamp(6px,1vh,12px)}
+  .about .facts b{font-size:clamp(1.05rem,2.4vh,1.4rem)}
+  .about .facts span{font-size:.66rem}
+  .about .about-text p{font-size:clamp(.82rem,1.85vh,.98rem);line-height:1.62;margin-bottom:clamp(6px,1.1vh,12px);max-width:none}
+}
 </style>
 </head>
 <body>
